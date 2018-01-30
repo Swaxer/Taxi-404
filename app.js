@@ -8,7 +8,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
- 
+
 // Pick arbitrary port for server
 var port = 3000;
 app.set('port', (process.env.PORT || port));
@@ -25,12 +25,15 @@ app.get('/', function (req, res) {
 app.get('/map', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/map.html'));
 });
+app.get('/client', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/client.html'));
+});
 // Serve dispatcher.html as /dispatcher
 app.get('/dispatcher', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/dispatcher.html'));
 });
 
-// Store data in an object to keep the global namespace clean and 
+// Store data in an object to keep the global namespace clean and
 // prepare for multiple instances of data if necessary
 function Data() {
   this.orders = {};
