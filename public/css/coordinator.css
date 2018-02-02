@@ -1,0 +1,123 @@
+
+body {
+    font-family: 'Didact Gothic';font-size: 18px;
+    font-weight: bolder;
+}
+
+#map {
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    top: 5%;
+    left: 0;
+    display: inline-block;
+    float: top;
+    overflow: hidden;
+}
+
+#navBar {
+    background-color: #fca311;
+    width: 100%;
+    height: 5%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 7px 20px -5px #000000;
+}
+
+#navBar button {
+    background-color: #fca311;
+    height: 100%;
+    border: none;
+    color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Didact Gothic';font-size: 18px;
+    font-weight: bolder;
+}
+
+#navBar button:focus {
+    outline: none;
+}
+
+#navBar button:hover {
+    cursor: pointer;
+}
+
+#hide {
+    margin-left: 15px;
+}
+
+#dots {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: url(/img/polacks.jpg);
+    background-repeat: no-repeat;
+    width:1920px;
+    height: 1078px;
+    cursor: crosshair;
+}
+
+#dots div {
+    position: absolute;
+    background: #000000;
+    color: #ffffff;
+    border-radius: 10px;
+    width:20px;
+    height:20px;
+    text-align: center;
+}
+
+#orderList {
+    top:1em;
+    left:1em;
+    position: absolute;
+    z-index: 2;
+    color: #000000;
+    background: rgba(255,255,255, 0.5);
+    padding: 1em;
+}
+
+#overview {
+    background-color: #e5e5e5;
+    width: 100%;
+    height: 1000px;
+    position: absolute;
+    top: 80%;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 7px 20px 5px #000000;
+}
+
+#orders {
+    background-color: #e5e5e5;
+    width: 50%;
+    height: 1000px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-style: solid;
+    border-width: 3px; color: #000000;
+}
+
+#cars {
+    background-color: #e5e5e5;
+    width: 50%;
+    height: 1000px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-style: solid;
+    border-width: 3px; color: #000000;
+}
+
+.carBox {
+    background-color: aqua;
+    height: 30px;
+    padding-left: 10px;
+}
