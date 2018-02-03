@@ -105,7 +105,16 @@ footer p {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
+#bb {
+  font-size: 40px;
+  position: relative;
+  top: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  padding: 10px;
+}
 #arriving {
     font-size: 40px;
     position: relative;
