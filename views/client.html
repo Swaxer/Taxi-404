@@ -12,9 +12,24 @@
   </nav>
   <main>
     <form>
-      <input type="text" name="from" placeholder="Vart vill du bli hämtad?"/>
-      <input type="text" name="from" placeholder="Vart vill du bli lämnad?"/>
-      <button type="button"> Fler alternativ </button>
+      <input type="text" name="from" placeholder="Vart vill du bli hämtad?" required="required"/>
+      <input type="text" name="to" placeholder="Vart vill du bli lämnad?" required="required"/>
+      <div id="alternatives">
+      <div id="alt-form">
+        <input type="date" name="date"/>
+        <input type="time" name="time"/>
+        <div id="car-picker">
+
+        </div>
+        <div id="requests">
+          <input type="checkbox" class="checkbox" id="vegetable"/>
+          <input type="checkbox" class="checkbox" id="animals" />
+          <input type="checkbox" class="checkbox" id="child" />
+        </div>
+        <textarea id="additional-info" placeholder="Additional information" rows="4"></textarea>
+      </div>
+      <button type="button" id="alternativ" onclick="document.getElementById('alt-form').style.display='inherit'"> Fler alternativ </button>
+      </div>
       <button> Boka nu </button>
     </form>
   </main>

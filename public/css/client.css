@@ -31,10 +31,11 @@ nav {
 }
 
 main {
-  height: 86%;
+  height: 90%;
   width: 100%;
   background-color: #14213d;
   text-align: center;
+  margin: 0;
 }
 
 input {
@@ -46,14 +47,28 @@ input {
   color: #000;
 }
 
+.checkbox {
+  width: 20%;
+}
+
+textarea {
+  width: 80%;
+}
+
 button {
   width: 80%;
   height: 10%;
   margin: 2%;
+  margin-bottom: 0%;
   font-size: 25px;
   background-color: #fca311;
   border: none;
   color: #fff;
+  cursor: pointer;
+}
+
+#alt-form {
+  display: none;
 }
 
 footer {
@@ -65,6 +80,7 @@ footer {
 
 footer p {
   margin: 0%;
+  padding: 2%;
   color: #fff;
 }
 .timer{
