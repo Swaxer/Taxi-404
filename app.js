@@ -28,6 +28,9 @@ app.get('/map', function (req, res) {
 app.get('/client', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/client.html'));
 });
+app.get('/taxi_on_the_way', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/taxi_on_the_way.html'));
+});
 // Serve dispatcher.html as /dispatcher
 app.get('/dispatcher', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/dispatcher.html'));
