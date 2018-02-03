@@ -178,11 +178,13 @@ footer p {
   width: 100%;
 }
 
-
+.timer{
+  font-size: 140px;
+}
 
 .loader {
     border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border-top: 16px solid #fca311; /* Blue */
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -199,7 +201,16 @@ footer p {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-
+#bb {
+  font-size: 40px;
+  position: relative;
+  top: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  padding: 10px;
+}
 #arriving {
     font-size: 40px;
     position: relative;
@@ -208,6 +219,5 @@ footer p {
     margin-left: auto;
     margin-right: auto;
     width: 60%;
-    border: 3px solid green;
     padding: 10px;
 }
