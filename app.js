@@ -31,6 +31,15 @@ app.get('/client', function (req, res) {
 app.get('/chuaffeur', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/chuaffeur.html'));
 });
+app.get('/chuaff_waiting', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/chuaff_waiting.html'));
+});
+app.get('/chuaff_pickup', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/chuaff_pickup.html'));
+});
+app.get('/chuaff_w_customer', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/chuaff_w_customer.html'));
+});
 app.get('/taxi_on_the_way', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/taxi_on_the_way.html'));
 });
