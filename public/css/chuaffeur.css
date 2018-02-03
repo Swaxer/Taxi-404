@@ -1,0 +1,116 @@
+body {
+  color: #fff;
+
+}
+
+nav {
+  width: 100%;
+  height: 7%;
+  background-color: #fca311;
+  border: 0%;
+  padding: 0%;
+  margin: 0%;
+}
+
+#menu {
+  width: 14%;
+  height: 100%;
+  float:right;
+  display: inline-block;
+  cursor: pointer;
+  margin: 2%;
+
+}
+
+.bar1, .bar2, .bar3 {
+  width: 60%;
+  height: 5px;
+  background-color: #fff;
+  float:right;
+  margin: 5% 5%;
+}
+
+main {
+  height: 90%;
+  width: 100%;
+  background-color: #14213d;
+  text-align: center;
+  margin: 0;
+}
+
+input {
+  width: 80%;
+  height: 10%;
+  margin: 2%;
+  font-size: 25px;
+  text-align: center;
+  color: #000;
+}
+
+.checkbox {
+  width: 20%;
+}
+
+textarea {
+  width: 80%;
+}
+
+button {
+  width: 80%;
+  height: 10%;
+  margin: 2%;
+  margin-bottom: 0%;
+  font-size: 25px;
+  background-color: #fca311;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+#alt-form {
+  display: none;
+}
+
+footer {
+  width: 100%;
+  height: 7%;
+  background-color: #14213d;
+  text-align: center;
+}
+
+footer p {
+  margin: 0%;
+  padding: 2%;
+  color: #fff;
+}
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    top: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#arriving {
+    font-size: 40px;
+    position: relative;
+    top: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    border: 3px solid green;
+    padding: 10px;
+}
