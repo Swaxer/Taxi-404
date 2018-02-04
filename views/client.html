@@ -2,6 +2,7 @@
 <html>
 <head>
   <link href="css/client.css" rel="stylesheet" type="text/css"/>
+  <script src="js/client.js" defer></script>
 </head>
 <body>
   <nav>
@@ -25,10 +26,10 @@
         <input type="date" name="date"/>
         <input type="time" name="time"/>
         <div id="car-wrapper">
-          <div id="small-car">
+          <div class="small-car">
             <img src="img/taxi.jpg"/>
           </div>
-          <div id="large-car">
+          <div class="large-car">
             <img src="img/taxi.jpg"/>
           </div>
         </div>
@@ -51,7 +52,7 @@
         </div>
         <textarea id="additional-info" placeholder="Additional information" rows="4"></textarea>
       </div>
-      <button type="button" id="alternativ" onclick="document.getElementById('alt-form').style.display='inherit'"> Fler alternativ </button>
+      <button type="button" id="alternativ" onclick='toggleAlternativ()'> Fler alternativ </button>
       </div>
       <button> Boka nu </button>
     </form>
