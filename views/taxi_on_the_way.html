@@ -7,13 +7,18 @@
 
 <body>
   <nav>
-    <div id="menu">
-      <div class="bar1"></div>
-      <div class="bar2"></div>
-      <div class="bar3"></div>
+    <div id="menu-wrapper">
+      <div id="logo">
+            <h1> TAXI-404 </h1>
+      </div>
+      <div id="menu">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
     </div>
   </nav>
-  <main>
+  <main id = "totw">
     <div class="loader"></div>
     <div id="arriving">
       <h2>Chauffören är påväg!</h2>
@@ -23,7 +28,7 @@
 
         <script>
           // Set the date we're counting down to
-          var countDownDate = new Date("Feb 3, 2018 15:47").getTime();
+          var countDownDate = new Date("Feb 4, 2018 15:47").getTime();
 
           // Update the count down every 1 second
           var x = setInterval(function() {
