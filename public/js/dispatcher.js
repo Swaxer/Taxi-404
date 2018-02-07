@@ -7,10 +7,13 @@ var socket = io();
 var vm = new Vue({
   el: '#page',
   data: {
-    orders: {},
-    taxis: {},
-    customerMarkers: {},
-    taxiMarkers: {}
+      orders: {},
+      taxis: {},
+      customerMarkers: {},
+      taxiMarkers: {},
+      viewMore: false,
+      showBtn: 'Visa mer',
+      btnClickedId: ''
   },
 
   created: function () {
@@ -86,6 +89,17 @@ var vm = new Vue({
     }).addTo(this.map);
   },
   methods: {
+      showMore: function (orderId) {
+          if (this.viewMore) {
+              this.btnClickedId = '';
+              this.viewMore = false;
+              this.showBtn = 'Visa mer';
+          } else {
+              this.btnClickedId = orderId;
+              this.viewMore = true;
+              this.showBtn = 'Visa mindre';
+          }
+      },
     createPopup: function (orderId, items) {
       var popup = document.createElement('div');
       popup.appendChild(document.createTextNode('Order ' + orderId));

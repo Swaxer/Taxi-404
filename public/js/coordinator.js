@@ -170,8 +170,6 @@ function testOrdersAndCars() {
     for (var i=0; i<5; i++) {
         makeCarPost(testCar2());
         makeCarPost(testCar2());
-        makeOrderPost(testOrder1());
-        makeOrderPost(testOrder2());
     }
     for (var i=0; i<10; i++) {
         makeCarPost(testCar1());
@@ -183,19 +181,3 @@ function testInTraffic() {
         makeInTrafficPost(testCar1());
     }
 }
-
-
-
-
-testOrdersAndCars();
-
-var viewMoreBtns = document.getElementsByClassName("viewMoreButton");
-//var box = document.getElementsByClassName("orderBox");
-var i = 0;
-for ( ;i<viewMoreBtns.length; ) {
-    viewMoreBtns[i].onclick = function() {
-        console.log(i);
-    };
-    i = i+1;
-}
-
