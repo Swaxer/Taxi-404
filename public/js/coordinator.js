@@ -1,13 +1,16 @@
 
-var mapHidden = false;
+var mapHidden = true;
 var hideMap = document.getElementById("hide");
 hideMap.onclick = function () {
     var overview = document.getElementById("overview");
+    var map = document.getElementById("my-map");
     if (mapHidden) {
-        overview.style.top = "80%";
+        map.style.height = "0%";
+        overview.style.top = "5%";
         mapHidden = false;
     } else {
-        overview.style.top = "5%";
+        map.style.height = "70%";
+        overview.style.top = "75%";
         mapHidden = true;
     }
 }
@@ -164,42 +167,35 @@ function testOrder2() {
 }
 
 function testOrdersAndCars() {
-    makeCarPost(testCar2());
-    makeCarPost(testCar2());
-    makeCarPost(testCar2());
-    makeCarPost(testCar2());
-    makeCarPost(testCar2());
-    makeCarPost(testCar2());
-    makeCarPost(testCar2());
-    makeCarPost(testCar2());
-    makeCarPost(testCar2());
-    makeCarPost(testCar1());
-    makeCarPost(testCar1());
-    makeCarPost(testCar1());
-    makeCarPost(testCar1());
-    makeCarPost(testCar1());
-    makeCarPost(testCar1());
-    makeCarPost(testCar1());
-    makeOrderPost(testOrder1());
-    makeOrderPost(testOrder1());
-    makeOrderPost(testOrder2());
-    makeOrderPost(testOrder2());
-    makeOrderPost(testOrder1());
-    makeOrderPost(testOrder1());
-    makeOrderPost(testOrder2());
-    makeOrderPost(testOrder2());
+    for (var i=0; i<5; i++) {
+        makeCarPost(testCar2());
+        makeCarPost(testCar2());
+        makeOrderPost(testOrder1());
+        makeOrderPost(testOrder2());
+    }
+    for (var i=0; i<10; i++) {
+        makeCarPost(testCar1());
+    }
 }
 
 function testInTraffic() {
-    makeInTrafficPost(testCar1());
-    makeInTrafficPost(testCar1());
-    makeInTrafficPost(testCar1());
-    makeInTrafficPost(testCar1());
-    makeInTrafficPost(testCar1());
-    makeInTrafficPost(testCar1());
-    makeInTrafficPost(testCar1());
-    makeInTrafficPost(testCar1());
+    for (var i=0; i<10; i++) {
+        makeInTrafficPost(testCar1());
+    }
 }
 
+
+
+
 testOrdersAndCars();
+
+var viewMoreBtns = document.getElementsByClassName("viewMoreButton");
+//var box = document.getElementsByClassName("orderBox");
+var i = 0;
+for ( ;i<viewMoreBtns.length; ) {
+    viewMoreBtns[i].onclick = function() {
+        console.log(i);
+    };
+    i = i+1;
+}
 
