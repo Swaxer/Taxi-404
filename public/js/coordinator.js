@@ -14,7 +14,7 @@ hideMap.onclick = function () {
         mapHidden = true;
     }
 }
-
+/*
 var showTrafficView = document.getElementById("inTraffic");
 showTrafficView.onclick = function () {
     var orders = document.getElementById("orders");
@@ -43,7 +43,7 @@ showOrderView.onclick = function () {
     cars.style.borderStyle = "solid";
     testOrdersAndCars();
 }
-
+*/
 function makeCarPost(car) {
     var carSlot = document.getElementById("cars");
     var carBox = document.createElement("div");

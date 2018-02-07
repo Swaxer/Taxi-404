@@ -107,7 +107,7 @@ hr {
 
 #orders {
     background-color: #e5e5e5;
-    width: 50%;
+    width: 49%;
     position: absolute;
     left: 0;
     top: 0;
@@ -119,27 +119,16 @@ hr {
     position: absolute;
     right: 0;
     top: 0;
+    margin-right: 1%;
 }
 
-.carBox {
+#inTrafficView {
     background-color: #e5e5e5;
-    height: 30px;
-    padding-left: 10px;
-    border-style: solid;
-    border-width: 1px; color: #000000;
-}
-
-.orderBox {
-    background-color: #e5e5e5;
-    height: 1500px;
-    padding-left: 10px;
-    border-style: solid;
-    border-width: 1px; color: #000000;
-}
-
-.timeBox {
-    float: right;
-    padding-right: 4%;
+    width: 99%;
+    margin-right: 1%;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .viewMoreButton {
@@ -163,4 +152,17 @@ hr {
 
 .viewMoreButton:hover {
     cursor: pointer;
+}
+
+.eta {
+    float: right;
+    margin-right: 8%;
+}
+
+#taken {
+    color: #AA3E39;
+}
+
+#notTaken {
+    color: #2D882D;
 }

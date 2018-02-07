@@ -13,7 +13,8 @@ var vm = new Vue({
       taxiMarkers: {},
       viewMore: false,
       showBtn: 'Visa mer',
-      btnClickedId: ''
+      btnClickedId: '',
+      ordersView: true,
   },
 
   created: function () {
@@ -99,6 +100,14 @@ var vm = new Vue({
               this.viewMore = true;
               this.showBtn = 'Visa mindre';
           }
+      },
+      taken: function (taxiId) {
+          for (var order in this.orders) {
+              if (this.orders[order].taxiIdConfirmed === taxiId) {
+                  return true;
+              }
+          }
+          return false;
       },
     createPopup: function (orderId, items) {
       var popup = document.createElement('div');
