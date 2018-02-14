@@ -188,12 +188,16 @@ footer p {
   font-size: 140px;
 }
 
+bb{
+  font-size: 20px;
+}
+
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #fca311; /* Blue */
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #fca311; /* Blue */
     border-radius: 50%;
-    width: 120px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
     position: relative;
     top: 30%;
     display: block;
@@ -229,4 +233,14 @@ footer p {
 }
 #totw{
   padding-top: 30%;
+}
+
+footer {
+  height: 7%;
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  background-color: #14213d;
+  text-align: center;
+  font-size: 100%;
 }
