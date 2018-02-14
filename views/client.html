@@ -1,8 +1,8 @@
 <html>
 <head>
-  <!-- <link href="css/client.css" rel="stylesheet" type="text/css"/> -->
   <link href="css/simple-grid.css" rel="stylesheet" type="text/css" />
   <link href="css/default.css" rel="stylesheet" type="text/css" />
+  <link href="css/client.css" rel="stylesheet" type="text/css"/>
   <script src="js/client.js" defer></script>
 </head>
 
@@ -41,12 +41,28 @@
                 <input type="time" name="time" />
               </div>
             </div>
-            <div class="row" id="car-wrapper">
+            <div class="row taxiSelect" id="car-wrapper">
               <div class="col-6-sm center">
-                <img src="img/taxi.jpg" />
+                <div id="removeSmallTaxi" onclick="removeSmallTaxi()">
+                    -
+                </div>
+                <div id="addSmallTaxi" onclick="addSmallTaxi()">
+                    +
+                </div>
+                <img src="img/small-taxi.png" class="imgTaxi"/>
+                <h2 id="smallTaxiAmount">1</h2>
               </div>
-              <div class="col-6-sm center">
-                <img src="img/taxi.jpg" />
+              <div class="col-6-sm center" id="largeTaxi">
+                <div id="removeLargeTaxi" onclick="removeLargeTaxi()">
+                      -
+                </div>
+                <div id="addLargeTaxi" onclick="addLargeTaxi()">
+                    +
+                </div>
+                <img src="img/big-taxi.png"/>
+                <h2 id="largeTaxiAmount">
+                  0
+                </h2>
               </div>
             </div>
             <div class="row" id="requests">
@@ -70,7 +86,7 @@
             <div class="row">
               <div class="col-12 center">
                 <button type="button" id="alternativ" onclick='toggleAlternativ()'> Fler alternativ </button>
-                <button> Boka nu </button>
+                <button type="button" onclick="location.href='/bokning_behandlas'"> Boka nu </button>
               </div>
             </div>
               </div>

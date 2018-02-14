@@ -13,3 +13,37 @@ function toggleAlternativ(){
     alt_enable = true;
   }
 }
+
+var smallTaxi = 1;
+var largeTaxi = 0;
+
+function addSmallTaxi(){
+  var elem = document.getElementById('smallTaxiAmount');
+  ++smallTaxi;
+  elem.innerHTML = smallTaxi;
+}
+function removeSmallTaxi(){
+  var elem = document.getElementById('smallTaxiAmount');
+  if (smallTaxi != 0){
+    --smallTaxi;
+    elem.innerHTML = smallTaxi;
+  }
+}
+
+function addLargeTaxi(){
+  var elem = document.getElementById('largeTaxiAmount');
+  ++largeTaxi;
+  elem.innerHTML = largeTaxi;
+}
+function removeLargeTaxi(){
+  var elem = document.getElementById('largeTaxiAmount');
+  if (largeTaxi > 0){
+    --largeTaxi;
+    elem.innerHTML = largeTaxi;
+  }
+}
+
+function chooseTaxiLarge(){
+  var elem = document.getElementById('largeTaxi');
+
+}
