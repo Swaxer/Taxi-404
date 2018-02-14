@@ -1,0 +1,92 @@
+<html>
+<head>
+  <!-- <link href="css/client.css" rel="stylesheet" type="text/css"/> -->
+  <link href="css/simple-grid.css" rel="stylesheet" type="text/css" />
+  <link href="css/default.css" rel="stylesheet" type="text/css" />
+  <script src="js/client.js" defer></script>
+</head>
+
+<body>
+  <nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-2-sm">
+        </div>
+        <div class="col-8-sm">
+          <h2> Taxi-404 </h2>
+        </div>
+        <div class="col-2-sm">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="row">
+              <div class="col-12 center">
+                <input type="text" name="from" placeholder="Vart vill du bli hämtad?" required="required" />
+                <input type="text" name="to" placeholder="Vart vill du bli lämnad?" required="required" />
+              </div>
+            </div>
+            <div id="alt-form">
+            <div class="row">
+              <div class="col-12 center">
+                <input type="date" name="date" />
+                <input type="time" name="time" />
+              </div>
+            </div>
+            <div class="row" id="car-wrapper">
+              <div class="col-6-sm center">
+                <img src="img/taxi.jpg" />
+              </div>
+              <div class="col-6-sm center">
+                <img src="img/taxi.jpg" />
+              </div>
+            </div>
+            <div class="row" id="requests">
+              <div class="col-4-sm center" id="vegetable">
+                <p> Rullstol </p>
+                <input type="checkbox" class="checkbox" />
+              </div>
+              <div class="col-4-sm center" id="animals">
+                <p> Djur </p>
+                <input type="checkbox" class="checkbox" />
+              </div>
+              <div class="col-4-sm center" id="child">
+                <p> Barn </p>
+                <input type="checkbox" class="checkbox" />
+              </div>
+              <div class="col-12 center">
+                <textarea id="additional-info" placeholder="Additional information" rows="4"></textarea>
+              </div>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-12 center">
+                <button type="button" id="alternativ" onclick='toggleAlternativ()'> Fler alternativ </button>
+                <button> Boka nu </button>
+              </div>
+            </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </form>
+    </div>
+    </div>
+    </div>
+  </main>
+  <footer>
+    <p>
+      &#169; Taxi-404
+    </p>
+  </footer>
+</body>
+
+</html>
