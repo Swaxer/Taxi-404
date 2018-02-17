@@ -1,60 +1,104 @@
-
 <html>
 <head>
+  <link href="css/simple-grid.css" rel="stylesheet" type="text/css" />
+  <link href="css/default.css" rel="stylesheet" type="text/css" />
   <link href="css/client.css" rel="stylesheet" type="text/css"/>
+  <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name=apple-mobile-web-app-capable content=yes>
+  <meta name=apple-mobile-web-app-status-bar-style content=black>
+  <script src="js/client.js" defer></script>
 </head>
+
 <body>
   <nav>
-    <div id="menu-wrapper">
-      <div id="logo">
-            <h1> TAXI-404 </h1>
-      </div>
-      <div id="menu">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-2-sm">
+        </div>
+        <div class="col-8-sm">
+          <h2> Taxi-404 </h2>
+        </div>
+        <div class="col-2-sm">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
       </div>
     </div>
   </nav>
   <main>
-    <form>
-      <input type="text" name="from" placeholder="Vart vill du bli hämtad?" required="required"/>
-      <input type="text" name="to" placeholder="Vart vill du bli lämnad?" required="required"/>
-      <div id="alternatives">
-      <div id="alt-form">
-        <input type="date" name="date"/>
-        <input type="time" name="time"/>
-        <div id="car-wrapper">
-          <div id="small-car">
-            <img src="img/taxi.jpg"/>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <form>
+            <div class="row">
+              <div class="col-12 center">
+                <input type="text" name="from" placeholder="Vart vill du bli hämtad?" required="required" />
+                <input type="text" name="to" placeholder="Vart vill du bli lämnad?" required="required" />
+              </div>
+            </div>
+            <div id="alt-form">
+            <div class="row">
+              <div class="col-12 center">
+                <input type="datetime-local" name="date" />
+              </div>
+            </div>
+            <div class="row taxiSelect" id="car-wrapper">
+              <div class="col-6-sm center">
+                <div id="removeSmallTaxi" onclick="removeSmallTaxi()">
+                    -
+                </div>
+                <div id="addSmallTaxi" onclick="addSmallTaxi()">
+                    +
+                </div>
+                <img src="img/small-taxi.png" class="imgTaxi"/>
+                <h2 id="smallTaxiAmount">1</h2>
+              </div>
+              <div class="col-6-sm center" id="largeTaxi">
+                <div id="removeLargeTaxi" onclick="removeLargeTaxi()">
+                      -
+                </div>
+                <div id="addLargeTaxi" onclick="addLargeTaxi()">
+                    +
+                </div>
+                <img src="img/big-taxi.png" class="imgTaxi"/>
+                <h2 id="largeTaxiAmount">
+                  0
+                </h2>
+              </div>
+            </div>
+            <div class="row" id="requests">
+              <div class="col-4-sm center" id="vegetable">
+                <p> Rullstol </p>
+                <input type="checkbox" class="checkbox" />
+              </div>
+              <div class="col-4-sm center" id="animals">
+                <p> Djur </p>
+                <input type="checkbox" class="checkbox" />
+              </div>
+              <div class="col-4-sm center" id="child">
+                <p> Barn </p>
+                <input type="checkbox" class="checkbox" />
+              </div>
+              <div class="col-12 center">
+                <textarea id="additional-info" placeholder="Additional information" rows="4"></textarea>
+              </div>
+            </div>
           </div>
-          <div id="large-car">
-            <img src="img/taxi.jpg"/>
-          </div>
+            <div class="row">
+              <div class="col-12 center">
+                <button type="button" id="alternativ" onclick='toggleAlternativ()'> Fler alternativ </button>
+                <button type="button" onclick="location.href='/bokning_behandlas'"> Boka nu </button>
+              </div>
+            </div>
+              </div>
+            </div>
         </div>
-        <div id="requests">
-
-        <div id="checkbox-wrapper">
-          <div id="vegetable">
-              <p> Rullstol </p>
-              <input type="checkbox" class="checkbox"/>
-          </div>
-          <div id="animals">
-              <p> Djur </p>
-              <input type="checkbox" class="checkbox"/>
-          </div>
-          <div id="child">
-              <p> Barn </p>
-              <input type="checkbox" class="checkbox"/>
-          </div>
-        </div>
-        </div>
-        <textarea id="additional-info" placeholder="Additional information" rows="4"></textarea>
       </div>
-      <button type="button" id="alternativ" onclick="document.getElementById('alt-form').style.display='inherit'"> Fler alternativ </button>
-      </div>
-      <button> Boka nu </button>
     </form>
+    </div>
+    </div>
+    </div>
   </main>
   <footer>
     <p>
@@ -62,4 +106,5 @@
     </p>
   </footer>
 </body>
+
 </html>

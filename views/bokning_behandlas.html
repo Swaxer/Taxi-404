@@ -2,24 +2,43 @@
 
 <head>
   <title>On the way!</title>
-  <link href="css/client.css" rel="stylesheet" type="text/css" />
+  <link href="css/simple-grid.css" rel="stylesheet" type="text/css" />
+  <link href="css/otw.css" rel="stylesheet" type="text/css" />
+  <link href="css/default.css" rel="stylesheet" type="text/css" />
+  <meta http-equiv="refresh" content="5;taxi_on_the_way" />
+
+
 </head>
 
 <body>
   <nav>
-    <div id="menu">
-      <div class="bar1"></div>
-      <div class="bar2"></div>
-      <div class="bar3"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-2-sm">
+        </div>
+        <div class="col-8-sm">
+          <h2> Taxi-404 </h2>
+        </div>
+        <div class="col-2-sm">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+      </div>
     </div>
   </nav>
-  <main>
+  <main id="totw">
+    <div class="container">
+      <div class="row">
+        <div id="arriving" class="col-12-sm center">
+          <div class="arriving">
+            <h2 id="bb">Bokningen behandlas</h2>
+          </div>
+          <div class="loader"></div>
 
-    <div id="bb">
-      <h2>Bokningnen behandlas</h2>
+        </div>
       </div>
-<div class="loader"></div>
-
+    </div>
   </main>
   <footer>
     <p>
