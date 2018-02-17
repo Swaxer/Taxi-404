@@ -40,6 +40,9 @@ app.get('/chuaff_pickup', function (req, res) {
 app.get('/chuaff_w_customer', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/chuaff_w_customer.html'));
 });
+app.get('/bokning_behandlas', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/bokning_behandlas.html'));
+});
 app.get('/taxi_on_the_way', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/taxi_on_the_way.html'));
 });

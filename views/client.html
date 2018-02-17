@@ -1,13 +1,19 @@
+
 <html>
 <head>
   <link href="css/client.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
   <nav>
-    <div id="menu">
-      <div class="bar1"></div>
-      <div class="bar2"></div>
-      <div class="bar3"></div>
+    <div id="menu-wrapper">
+      <div id="logo">
+            <h1> TAXI-404 </h1>
+      </div>
+      <div id="menu">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
     </div>
   </nav>
   <main>
@@ -18,13 +24,30 @@
       <div id="alt-form">
         <input type="date" name="date"/>
         <input type="time" name="time"/>
-        <div id="car-picker">
-
+        <div id="car-wrapper">
+          <div id="small-car">
+            <img src="img/taxi.jpg"/>
+          </div>
+          <div id="large-car">
+            <img src="img/taxi.jpg"/>
+          </div>
         </div>
         <div id="requests">
-          <input type="checkbox" class="checkbox" id="vegetable"/>
-          <input type="checkbox" class="checkbox" id="animals" />
-          <input type="checkbox" class="checkbox" id="child" />
+
+        <div id="checkbox-wrapper">
+          <div id="vegetable">
+              <p> Rullstol </p>
+              <input type="checkbox" class="checkbox"/>
+          </div>
+          <div id="animals">
+              <p> Djur </p>
+              <input type="checkbox" class="checkbox"/>
+          </div>
+          <div id="child">
+              <p> Barn </p>
+              <input type="checkbox" class="checkbox"/>
+          </div>
+        </div>
         </div>
         <textarea id="additional-info" placeholder="Additional information" rows="4"></textarea>
       </div>
