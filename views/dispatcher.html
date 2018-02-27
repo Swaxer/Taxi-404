@@ -9,102 +9,115 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/leaflet/leaflet.js"></script>
     <script src="js/dispatcher.js" defer></script>
-    <link rel="stylesheet" href="css/coordinator.css">
-    <script src="/js/coordinator.js" defer></script>
+    <link rel="stylesheet" href="css/dispatcher.css">
     <link href='https://fonts.googleapis.com/css?family=Didact Gothic' rel='stylesheet'>
-
 </head>
+
 <body>
-    <div id="page">
-        <div id="my-map"></div>
-        <div id="overview">
-            <div id="orders" v-show="ordersView">
-                <ul>
-                    <li v-for="order in orders">
-                        Från: {{ order.fromLatLong[0].toFixed(3) }}, {{ order.fromLatLong[1].toFixed(3) }}<br>
-                        Till: {{ order.destLatLong[0].toFixed(3) }}, {{ order.destLatLong[1].toFixed(3) }}
-                        <button class="viewMoreButton" v-on:click="showMore(order.orderId)">
-                            <b v-if="btnClickedId === order.orderId">Visa mindre</b>
-                            <b v-else>Visa mer</b>
-                        </button>
-                        <div v-show="viewMore && btnClickedId === order.orderId">
-                            Order #{{ order.orderId }}
-                            <ul>
-                                <li v-for="(item, key) in order.orderItems">
-                                    {{ key + ": " + item }}
-                                </li>
-                            </ul>
-                            <select v-on:change="assignTaxi(order)" v-model="order.taxiId">
-                                <option disabled value="">Assign a taxi</option>
+<div id="page">
+    <div id="my-map"></div>
+    <div id="overview">
+        <div id="orders" v-show="ordersView">
+            <ul>
+                <li v-for="order in orders" v-if="!order.taxiIdConfirmed">
+                    Order #{{ order.orderId }}<br>
+                    Från: {{ order.fromLatLong[0].toFixed(3) }}, {{ order.fromLatLong[1].toFixed(3) }}
+                    Till: {{ order.destLatLong[0].toFixed(3) }}, {{ order.destLatLong[1].toFixed(3) }}
+                    <button class="viewMoreButton" v-on:click="showMore(order.orderId)">
+                        <b v-if="btnClickedId === order.orderId">Visa mindre</b>
+                        <b v-else>Visa mer</b>
+                    </button>
+                    <div v-show="viewMore && btnClickedId === order.orderId">
+                        <div class="assignTaxi">
+                            <label for="dropDown">Tilldela körning</label><br>
+                            <select id="dropDown" v-on:change="assignTaxi(order)" v-model="order.taxiId">
                                 <option v-for="taxi in taxis" :value="taxi.taxiId">
-                                    # {{ taxi.taxiId}} Pos: {{ taxi.latLong[0].toFixed(3) }}, {{ taxi.latLong[1].toFixed(3) }}
+                                    Taxi #{{ taxi.taxiId}}
                                 </option>
                             </select><br>
-                            {{ order.taxiIdConfirmed }}
                         </div>
-                        <hr>
-                    </li>
-                </ul>
-            </div>
-            <div id="cars" v-show="ordersView">
-                <ul>
-                    <li v-for="taxi in taxis" :value="taxi.taxiId">
-                        <div v-if="taken(taxi.taxiId)">
-                            Taxi #{{ taxi.taxiId  }}<br>
-                            <button class="viewMoreButton" v-on:click="showMore(taxi.taxiId)">
-                                <b v-if="btnClickedId === taxi.taxiId">Visa mindre</b>
-                                <b v-else>Visa mer</b>
-                            </button>
-                            <b id="taken">Upptagen</b>
-                            <b class="eta">ETA: 14:00 Destination: {{ taxi.latLong[0].toFixed(3) }}, {{ taxi.latLong[1].toFixed(3) }}</b>
-                        </div>
-                        <div v-else>
-                            Taxi #{{ taxi.taxiId  }} Pos: {{ taxi.latLong[0].toFixed(3) }}, {{ taxi.latLong[1].toFixed(3) }}<br>
-                            <button class="viewMoreButton" v-on:click="showMore(taxi.taxiId)">
-                                <b v-if="btnClickedId === taxi.taxiId">Visa mindre</b>
-                                <b v-else>Visa mer</b>
-                            </button>
-                            <b id="notTaken">Ledig</b>
-                        </div>
-                        <div v-show="viewMore && btnClickedId === taxi.taxiId">
-                            <p>hallå</p>
-                            <p>hallå</p>
-                            <p>hallå</p>
-                        </div>
-                        <hr>
-                    </li>
-                </ul>
-            </div>
-            <div id="inTrafficView" v-show="!ordersView">
-                <ul>
-                    <li v-for="order in orders" v-if="order.taxiIdConfirmed">
-                        Order #{{ order.orderId }}<br>
-                        Taxi #{{ order.taxiIdConfirmed }}
-                        <button class="viewMoreButton" v-on:click="showMore(order.orderId)">
-                            <b v-if="btnClickedId === order.orderId">Visa mindre</b>
+                        <ul>
+                            <li v-for="(item, key) in order.orderItems">
+                                {{ key + ": " + item }}
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                </li>
+            </ul>
+        </div>
+        <div id="cars" v-show="ordersView">
+            <ul>
+                <li v-for="taxi in taxis" :value="taxi.taxiId">
+                    <div v-if="taken(taxi.taxiId)">
+                        Taxi #{{ taxi.taxiId }}<br>
+                        <button class="viewMoreButton" v-on:click="showMore(taxi.taxiId)">
+                            <b v-if="btnClickedId === taxi.taxiId">Visa mindre</b>
                             <b v-else>Visa mer</b>
                         </button>
-                        <b class="eta">
-                            ETA: 14:00
-                            Destination: {{ order.destLatLong[0].toFixed(3) }}, {{ order.destLatLong[1].toFixed(3) }}
-                        </b>
-                        <div v-show="viewMore && btnClickedId === order.orderId">
-                            <ul>
-                                <li v-for="(item, key) in order.orderItems">
-                                    {{ key + ": " + item }}
-                                </li>
-                            </ul>
-                        </div>
-                        <hr>
-                    </li>
-                </ul>
-            </div>
+                        <b v-if="taxi.taxiId < 500000">Stor bil </b>
+                        <b v-else>Liten bil </b>
+                        <b id="taken">Upptagen</b>
+                        <b class="eta">ETA: 14:00 Destination: {{ taxi.latLong[0].toFixed(3) }}, {{ taxi.latLong[1].toFixed(3) }}</b>
+                    </div>
+                    <div v-else>
+                        Taxi #{{ taxi.taxiId }} Pos: {{ taxi.latLong[0].toFixed(3) }}, {{ taxi.latLong[1].toFixed(3) }}<br>
+                        <button class="viewMoreButton" v-on:click="showMore(taxi.taxiId)">
+                            <b v-if="btnClickedId === taxi.taxiId">Visa mindre</b>
+                            <b v-else>Visa mer</b>
+                        </button>
+                        <b v-if="taxi.taxiId < 500000">Stor bil </b>
+                        <b v-else>Liten bil </b>
+                        <b id="notTaken">Ledig</b>
+                    </div>
+                    <div v-show="viewMore && btnClickedId === taxi.taxiId">
+                        <ul v-if="taxi.taxiId < 500000">
+                            <li v-for="item in bigTaxi">
+                                {{ item }}<br>
+                            </li>
+                        </ul>
+                        <ul v-else>
+                            <li v-for="item in smallTaxi">
+                                {{ item }}<br>
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                </li>
+            </ul>
         </div>
-        <div id="navBar">
-            <button id="hide">Dölj karta</button>
-            <button id="incoming" v-on:click="ordersView = true">Inkommande körningar</button>
-            <button id="inTraffic" v-on:click="ordersView = false">Tilldelade körningar</button>
+        <div id="inTrafficView" v-show="!ordersView">
+            <ul>
+                <li v-for="order in orders" v-if="order.taxiIdConfirmed">
+                    Order #{{ order.orderId }}<br>
+                    Taxi #{{ order.taxiIdConfirmed }}
+                    <b v-if="order.taxiIdConfirmed < 500000"> Stor bil </b>
+                    <b v-else> Liten bil </b>
+                    <button class="viewMoreButton" v-on:click="showMore(order.orderId)">
+                        <b v-if="btnClickedId === order.orderId">Visa mindre</b>
+                        <b v-else>Visa mer</b>
+                    </button>
+                    <b class="eta">
+                        ETA: 14:00
+                        Destination: {{ order.destLatLong[0].toFixed(3) }}, {{ order.destLatLong[1].toFixed(3) }}
+                    </b>
+                    <div v-show="viewMore && btnClickedId === order.orderId">
+                        <ul>
+                            <li v-for="(item, key) in order.orderItems">
+                                {{ key + ": " + item }}
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                </li>
+            </ul>
         </div>
     </div>
+    <div id="navBar">
+        <button id="incoming" v-on:click="ordersView = true">Inkommande körningar</button>
+        <button id="inTraffic" v-on:click="ordersView = false">Tilldelade körningar</button>
+        <button id="fardtjanst">Färdtjänst</button>
+    </div>
+</div>
 </body>
 </html>

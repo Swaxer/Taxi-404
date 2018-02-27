@@ -60,7 +60,7 @@ hr {
     cursor: pointer;
 }
 
-#hide {
+#incoming {
     margin-left: 15px;
 }
 
@@ -144,6 +144,31 @@ hr {
     float: right;
     font-family: 'Didact Gothic';font-size: 13px;
     font-weight: bolder;
+}
+
+.assignTaxi {
+    float: right;
+    padding-top: 2%;
+    text-align: right;
+}
+
+.assignTaxi select {
+    background-color: #fca311;
+    cursor: pointer;
+    border: none;
+    color: #ffffff;
+    outline: none;
+
+    padding-left: 4px;
+    padding-right: 4px;
+    text-align: center;
+    font-family: 'Didact Gothic';font-size: 16px;
+    font-weight: bolder;
+}
+
+.assignTaxi option {
+    outline: none;
+    border: none;
 }
 
 .viewMoreButton:focus {
