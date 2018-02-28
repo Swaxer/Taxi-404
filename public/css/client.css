@@ -1,0 +1,52 @@
+#addSmallTaxi {
+  left: 25%;
+  width: 25%;
+  height: 60px;
+  position: absolute;
+}
+
+#removeSmallTaxi {
+  left: 0;
+  position: absolute;
+  width: 25%;
+  height: 60px;
+}
+
+#addLargeTaxi {
+  right: 0;
+  width: 25%;
+  height: 60px;
+  position: absolute;
+}
+
+#removeLargeTaxi {
+  right: 25%;
+  position: absolute;
+  width: 25%;
+  height: 60px;
+}
+
+.taxiSelect h2 {
+  margin: 0;
+}
+
+.imgTaxi {
+  height: 60px;
+}
+
+#requests p {
+  margin-top: 0;
+}
+
+#removeSmallTaxi:hover, #removeLargeTaxi:hover {
+  background-color: rgba(255, 8, 8, 0.8);
+}
+
+#addSmallTaxi:hover, #addLargeTaxi:hover {
+  background-color: rgba(92, 240, 0, 0.8);
+}
+
+#addSmallTaxi, #addLargeTaxi, #removeLargeTaxi, #removeSmallTaxi {
+  margin: 0;
+  font-size: 2.5rem;
+}
