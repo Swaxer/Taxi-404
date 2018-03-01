@@ -28,6 +28,14 @@
 
 .taxiSelect h2 {
   margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.taxiSelect h3 {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .imgTaxi {
