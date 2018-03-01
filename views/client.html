@@ -47,16 +47,16 @@
                         <div class="col-12 center">
                             <input type="text" name="from" v-model="placeQueryFrom" v-on:input="searchAddressFrom"
                                    placeholder="Vart vill du bli hämtad?" required="required"/>
-                            <ol>
-                                <li v-for="addr in fromMarker" v-if="addr.score > 72"
+                            <ol class="addressAlternativeList">
+                                <li class="addressAlternative" v-for="addr in fromMarker" v-if="addr.score > 72"
                                     v-on:click="getAddressFrom(addr.latlng)">
                                     {{ addr.text }}
                                 </li>
                             </ol>
                             <input type="text" name="to" v-model="placeQueryDest" v-on:input="searchAddressDest"
                                    placeholder="Vart vill du bli lämnad?" required="required"/>
-                            <ol>
-                                <li v-for="addr in destMarker" v-if="addr.score > 72"
+                            <ol class="addressAlternativeList">
+                                <li class="addressAlternative" v-for="addr in destMarker" v-if="addr.score > 72"
                                     v-on:click="getAddressDest(addr.latlng)">
                                     {{ addr.text }}
                                 </li>

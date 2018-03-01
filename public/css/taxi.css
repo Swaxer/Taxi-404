@@ -1,0 +1,14 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#my-map {
+	width: 80%;
+	height: 40%;
+	border: 0px;
+}
+
+.popup-list {
+	padding-left: 0;
+}

@@ -27,11 +27,23 @@ app.use('/esri-leaflet-geocoder', express.static(path.join(__dirname, '/node_mod
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/client.html'));
 });
-// Serve driver.html as /driver
+
 app.get('/driver', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/driver.html'));
+    res.sendFile(path.join(__dirname, 'views/chuaffeur.html'));
 });
-// Serve dispatcher.html as /dispatcher
+
+app.get('/chuaff_waiting', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/chuaff_waiting.html'));
+});
+
+app.get('/chuaff_pickup', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/chuaff_pickup.html'));
+});
+
+app.get('/chuaff_w_customer', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/chuaff_w_customer.html'));
+});
+
 app.get('/dispatcher', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/dispatcher.html'));
 });
