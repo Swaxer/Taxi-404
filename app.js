@@ -28,6 +28,9 @@ app.get('/map', function (req, res) {
 app.get('/client', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/client.html'));
 });
+app.get('/fardtjanst', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/fardtjanst.html'));
+});
 app.get('/bokning_behandlas', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/bokning_behandlas.html'));
 });
