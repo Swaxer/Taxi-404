@@ -12,45 +12,23 @@ var vm = new Vue({
         fromMarker: null,
         destMarker: null,
         taxiMarkers: {},
+        smallTaxi: 1,
+        largeTaxi: 0,
+        checkboxes: {
+          wheelchair: false,
+          animals: false,
+          kids: false,
+        },
+        pickupTime: null,
+        additionalInfo: null,
         placeQueryFrom: "",
-        placeQueryDest: ""
+        placeQueryDest: "",
+        orderItems: {},
     },
     created: function () {
-        socket.on('initialize', function (data) {
-            // add taxi markers in the map for all taxis
-            for (var taxiId in data.taxis) {
-                this.taxiMarkers[taxiId] = this.putTaxiMarker(data.taxis[taxiId]);
-            }
-        }.bind(this));
         socket.on('orderId', function (orderId) {
             this.orderId = orderId;
         }.bind(this));
-        socket.on('taxiAdded', function (taxi) {
-            this.taxiMarkers[taxi.taxiId] = this.putTaxiMarker(taxi);
-        }.bind(this));
-
-        socket.on('taxiMoved', function (taxi) {
-            this.taxiMarkers[taxi.taxiId].setLatLng(taxi.latLong);
-        }.bind(this));
-
-        socket.on('taxiQuit', function (taxiId) {
-            this.map.removeLayer(this.taxiMarkers[taxiId]);
-            Vue.delete(this.taxiMarkers, taxiId);
-        }.bind(this));
-
-        // These icons are not reactive
-        this.taxiIcon = L.icon({
-            iconUrl: "img/taxi.png",
-            iconSize: [36, 36],
-            iconAnchor: [18, 36],
-            popupAnchor: [0, -36]
-        });
-
-        this.fromIcon = L.icon({
-            iconUrl: "img/customer.png",
-            iconSize: [36, 50],
-            iconAnchor: [19, 50]
-        });
     },
     mounted: function () {
         // set up the map
@@ -106,17 +84,70 @@ var vm = new Vue({
                                 this.destMarker = response.results;
                             }.bind(this));
         },
-        getAddressFrom: function (latLng) {
+        getAddressFrom: function (latLng, address) {
             this.fromMarker = L.marker(latLng).addTo(this.map);
+            this.placeQueryFrom = address;
         },
-        getAddressDest: function (latLng) {
+        getAddressDest: function (latLng, address) {
             this.destMarker = L.marker(latLng).addTo(this.map);
+            this.placeQueryDest = address;
         },
+        removeSmallTaxi: function(){
+          if (this.smallTaxi != 0){
+              this.smallTaxi = this.smallTaxi -1;
+          }
+        },
+        addSmallTaxi: function(){
+          this.smallTaxi = this.smallTaxi +1;
+        },
+        removeLargeTaxi: function(){
+          if (this.largeTaxi != 0){
+              this.largeTaxi = this.largeTaxi -1;
+          }
+        },
+        addLargeTaxi: function(){
+          this.largeTaxi = this.largeTaxi +1;
+        },
+
         orderTaxi: function () {
+
+            if (this.pickupTime == null){
+              var currentdate = new Date();
+              var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/"
+                + currentdate.getFullYear() + " @ "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds();
+
+              this.pickupTime = datetime;
+            }
+
+            this.orderItems.datum = this.pickupTime;
+
+            if (this.smallTaxi != 0){
+              this.orderItems.litenTaxi = this.smallTaxi;
+            }
+            if (this.largeTaxi != 0){
+              this.orderItems.storTaxi = this.largeTaxi;
+            }
+            if (this.checkboxes.wheelchair){
+              this.orderItems.rullstol = "Ja";
+            }
+            if (this.checkboxes.animals){
+              this.orderItems.djur = "Ja";
+            }
+            if (this.checkboxes.kids){
+              this.orderItems.barn = "Ja"
+            }
+            if (this.additionalInfo != ""){
+              this.orderItems.info = this.additionalInfo;
+            }
+
             socket.emit("orderTaxi", {
                 fromLatLong: [this.fromMarker.getLatLng().lat, this.fromMarker.getLatLng().lng],
                 destLatLong: [this.destMarker.getLatLng().lat, this.destMarker.getLatLng().lng],
-                orderItems: {passengers: 1, bags: 1, animals: "doge", otherStuff: "kiss"}
+                orderItems: this.orderItems
             });
         }
     }

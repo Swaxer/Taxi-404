@@ -49,7 +49,7 @@
                                    placeholder="Vart vill du bli hämtad?" required="required"/>
                             <ol class="addressAlternativeList">
                                 <li class="addressAlternative" v-for="addr in fromMarker" v-if="addr.score > 72"
-                                    v-on:click="getAddressFrom(addr.latlng)">
+                                    v-on:click="getAddressFrom(addr.latlng, addr.text)">
                                     {{ addr.text }}
                                 </li>
                             </ol>
@@ -57,7 +57,7 @@
                                    placeholder="Vart vill du bli lämnad?" required="required"/>
                             <ol class="addressAlternativeList">
                                 <li class="addressAlternative" v-for="addr in destMarker" v-if="addr.score > 72"
-                                    v-on:click="getAddressDest(addr.latlng)">
+                                    v-on:click="getAddressDest(addr.latlng, addr.text)">
                                     {{ addr.text }}
                                 </li>
                             </ol>
@@ -66,55 +66,57 @@
                     <div id="alt-form">
                         <div class="row">
                             <div class="col-12 center">
-                                <input type="datetime-local" name="date"/>
+                                <input v-model="pickupTime" type="datetime-local" name="date"/>
                             </div>
                         </div>
                         <div class="row taxiSelect" id="car-wrapper">
                             <div class="col-6-sm center">
-                                <div id="removeSmallTaxi" onclick="removeSmallTaxi()">
+                                <div id="removeSmallTaxi" v-on:click="removeSmallTaxi">
                                     -
                                 </div>
-                                <div id="addSmallTaxi" onclick="addSmallTaxi()">
+                                <div id="addSmallTaxi" v-on:click="addSmallTaxi">
                                     +
                                 </div>
                                 <img src="img/small-taxi.png" class="imgTaxi"/>
-                                <h2 id="smallTaxiAmount">1</h2>
+                                <h2 id="smallTaxiAmount">
+                                  {{smallTaxi}}
+                                </h2>
                             </div>
                             <div class="col-6-sm center" id="largeTaxi">
-                                <div id="removeLargeTaxi" onclick="removeLargeTaxi()">
+                                <div id="removeLargeTaxi" v-on:click="removeLargeTaxi">
                                     -
                                 </div>
-                                <div id="addLargeTaxi" onclick="addLargeTaxi()">
+                                <div id="addLargeTaxi" v-on:click="addLargeTaxi">
                                     +
                                 </div>
                                 <img src="img/big-taxi.png" class="imgTaxi"/>
                                 <h2 id="largeTaxiAmount">
-                                    0
+                                    {{largeTaxi}}
                                 </h2>
                             </div>
                         </div>
                         <div class="row" id="requests">
                             <div class="col-4-sm center" id="vegetable">
                                 <p> Rullstol </p>
-                                <input type="checkbox" class="checkbox"/>
+                                <input v-model="checkboxes.wheelchair" type="checkbox" class="checkbox"/>
                             </div>
                             <div class="col-4-sm center" id="animals">
                                 <p> Djur </p>
-                                <input type="checkbox" class="checkbox"/>
+                                <input v-model="checkboxes.animals" type="checkbox" class="checkbox"/>
                             </div>
                             <div class="col-4-sm center" id="child">
                                 <p> Barn </p>
-                                <input type="checkbox" class="checkbox"/>
+                                <input v-model="checkboxes.kids" type="checkbox" class="checkbox"/>
                             </div>
                             <div class="col-12 center">
-                                <textarea id="additional-info" placeholder="Additional information" rows="4"></textarea>
+                                <textarea v-model="additionalInfo" id="additional-info" placeholder="Additional information" rows="4"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 center">
                             <button type="button" id="alternativ" onclick='toggleAlternativ()'> Fler alternativ</button>
-                            <button type="button" v-on:click="orderTaxi" onclick="location.href='/bokning_behandlas'">
+                            <button type="button" v-on:click="orderTaxi" >
                                 Boka nu
                             </button>
                         </div>
