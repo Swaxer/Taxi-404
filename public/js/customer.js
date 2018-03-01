@@ -16,41 +16,9 @@ var vm = new Vue({
         placeQueryDest: ""
     },
     created: function () {
-        socket.on('initialize', function (data) {
-            // add taxi markers in the map for all taxis
-            for (var taxiId in data.taxis) {
-                this.taxiMarkers[taxiId] = this.putTaxiMarker(data.taxis[taxiId]);
-            }
-        }.bind(this));
         socket.on('orderId', function (orderId) {
             this.orderId = orderId;
         }.bind(this));
-        socket.on('taxiAdded', function (taxi) {
-            this.taxiMarkers[taxi.taxiId] = this.putTaxiMarker(taxi);
-        }.bind(this));
-
-        socket.on('taxiMoved', function (taxi) {
-            this.taxiMarkers[taxi.taxiId].setLatLng(taxi.latLong);
-        }.bind(this));
-
-        socket.on('taxiQuit', function (taxiId) {
-            this.map.removeLayer(this.taxiMarkers[taxiId]);
-            Vue.delete(this.taxiMarkers, taxiId);
-        }.bind(this));
-
-        // These icons are not reactive
-        this.taxiIcon = L.icon({
-            iconUrl: "img/taxi.png",
-            iconSize: [36, 36],
-            iconAnchor: [18, 36],
-            popupAnchor: [0, -36]
-        });
-
-        this.fromIcon = L.icon({
-            iconUrl: "img/customer.png",
-            iconSize: [36, 50],
-            iconAnchor: [19, 50]
-        });
     },
     mounted: function () {
         // set up the map

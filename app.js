@@ -29,19 +29,11 @@ app.get('/', function (req, res) {
 });
 
 app.get('/driver', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/chuaffeur.html'));
+    res.sendFile(path.join(__dirname, 'views/driver.html'));
 });
 
-app.get('/chuaff_waiting', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/chuaff_waiting.html'));
-});
-
-app.get('/chuaff_pickup', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/chuaff_pickup.html'));
-});
-
-app.get('/chuaff_w_customer', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/chuaff_w_customer.html'));
+app.get('/driver_pickup', function (req, res) {
+    res.sendFile(path.join(__dirname, 'views/driver_pickup.html'));
 });
 
 app.get('/dispatcher', function (req, res) {
