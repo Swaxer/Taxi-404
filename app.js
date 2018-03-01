@@ -34,6 +34,9 @@ app.get('/bokning_behandlas', function (req, res) {
 app.get('/taxi_on_the_way', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/taxi_on_the_way.html'));
 });
+app.get('/bekrafta', function (req, res) {
+  res.sendFile(path.join(__dirname, 'views/bekrafta.html'));
+});
 // Serve dispatcher.html as /dispatcher
 app.get('/dispatcher', function (req, res) {
   res.sendFile(path.join(__dirname, 'views/dispatcher.html'));

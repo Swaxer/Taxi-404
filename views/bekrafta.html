@@ -1,13 +1,15 @@
 <html>
 
 <head>
+  <title>Bekräfta köp</title>
   <link href="css/simple-grid.css" rel="stylesheet" type="text/css" />
   <link href="css/default.css" rel="stylesheet" type="text/css" />
-  <link href="css/client.css" rel="stylesheet" type="text/css"/>
+
+
+
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <script src="js/client.js" defer></script>
 </head>
 
 <body>
@@ -34,8 +36,19 @@
           <form>
             <div class="row">
               <div class="col-12 center">
-                <input type="text" name="from" placeholder="Vart vill du bli hämtad?" required="required" />
-                <input type="text" name="to" placeholder="Vart vill du bli lämnad?" required="required" />
+                <div class="col-12 left">
+
+                  <h3> Din bokning: </h3>
+                  <p> Plats för x personer </p>
+                  <p> Från: ph för adress </p>
+                  <p> Till: ph för adress </p>
+                  <p> Klockan: 13:37 </p>
+                  <p> Ytterligare info: </p>
+
+                </div>
+
+                <input type="text" name="from" placeholder="Namn" required="required" />
+                <input type="text" name="to" placeholder="Telefonnummer" required="required" />
               </div>
             </div>
             <div id="alt-form">
@@ -46,10 +59,6 @@
               </div>
               <div class="row taxiSelect" id="car-wrapper">
                 <div class="col-6-sm center">
-                  <h3> Liten taxi </h3>
-                  <p>
-                     ( 4pers )
-                  </p>
                   <div id="removeSmallTaxi" onclick="removeSmallTaxi()">
                     -
                   </div>
@@ -60,10 +69,6 @@
                   <h2 id="smallTaxiAmount">1</h2>
                 </div>
                 <div class="col-6-sm center" id="largeTaxi">
-                  <h3> Stor taxi </h3>
-                  <p>
-                     ( 7pers )
-                  </p>
                   <div id="removeLargeTaxi" onclick="removeLargeTaxi()">
                     -
                   </div>
@@ -96,14 +101,14 @@
             </div>
             <div class="row">
               <div class="col-12 center">
-                <button type="button" id="alternativ" onclick='toggleAlternativ()'> Fler alternativ </button>
-                <button type="button" onclick="location.href='/bekrafta'"> Boka nu </button>
+                <button type="button" onclick="location.href='/bokning_behandlas'"> Bekräfta bokning </button>
               </div>
             </div>
           </form>
         </div>
       </div>
     </div>
+
   </main>
   <footer>
     <p>
