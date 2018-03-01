@@ -42,8 +42,3 @@ function removeLargeTaxi(){
     elem.innerHTML = largeTaxi;
   }
 }
-
-function chooseTaxiLarge(){
-  var elem = document.getElementById('largeTaxi');
-
-}
