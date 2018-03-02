@@ -1,82 +1,91 @@
-body,html {
-  color: #fff;
-  background-color: #14213d;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  min-height: 100%;
+body, html {
+    color: #fff;
+    background-color: #14213d;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-height: 100%;
 }
 
 nav {
-  width: 100%;
-  height: 7%;
-  background-color: #fca311;
-  margin: 0;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 9;
+    width: 100%;
+    height: 60px;
+    background-color: #fca311;
+    margin: 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 9;
 }
 
 nav h2 {
-  margin: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
 }
 
 .bar1, .bar2, .bar3 {
-  width: 60%;
-  height: 5px;
-  background-color: #fff;
-  float: right;
-  margin-top: 10%;
+    width: 35px;
+    height: 5px;
+    background-color: #fff;
+    margin-top: 5px;
 }
 
 img {
-  width: 100%;
+    width: 100%;
 }
+
 main {
-  color: #fff;
+    color: #fff;
 }
 
 input {
-  width: 100%;
-  height: 10%;
-  margin-bottom: 4%;
-  font-size: 100%;
-  text-align: center;
+    width: 100%;
+    height: 10%;
+    margin-bottom: 10px;
+    font-size: 100%;
+    text-align: center;
 }
 
 input[type="checkbox"] {
-  height: auto;
-  width: auto;
-  transform:scale(4,4);
-  margin-bottom: 10%;
+    height: auto;
+    width: auto;
+    transform: scale(2, 2);
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 textarea {
-  width: 100%;
-  font-size: 100%;
-  text-align: center;
+    width: 100%;
+    font-size: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 button {
-  width: 100%;
-  height: 10%;
-  margin-bottom: 4%;
-  font-size: 100%;
-  color: #fff;
-  background-color: #fca311;
-  border: 0;
+    width: 100%;
+    height: 10%;
+    margin-bottom: 10px;
+    font-size: 100%;
+    color: #fff;
+    background-color: #fca311;
+    border: 0;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 footer {
-  height: 7%;
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  background-color: #14213d;
-  text-align: center;
-  font-size: 100%;
+    height: 30px;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    background-color: #14213d;
+    text-align: center;
+    font-size: 100%;
 }
 
 .loader {
@@ -101,4 +110,64 @@ footer {
 
 #alt-form {
   display: none;
+}
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: #fca311; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+
+}
+
+#my-map {
+    width: 100%;
+    height: 30%;
+    border: 0px;
+    z-index: 8;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+.popup-list {
+    padding-left: 0;
 }

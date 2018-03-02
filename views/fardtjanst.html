@@ -1,12 +1,14 @@
 <html>
 
 <head>
-  <title>On the way!</title>
+  <title>Färdtjänst</title>
   <link href="css/simple-grid.css" rel="stylesheet" type="text/css" />
-  <link href="css/otw.css" rel="stylesheet" type="text/css" />
   <link href="css/default.css" rel="stylesheet" type="text/css" />
-  <meta http-equiv="refresh" content="5;taxi_on_the_way" />
   <script src="js/sidenav.js" defer></script>
+  <script src="js/login.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
 
 </head>
@@ -32,20 +34,31 @@
   <a href="/fardtjanst">Färdtjänst</a>
   <a href="/client">Vanlig taxi</a>
   <a href="#">Om oss</a>
-  </div>
-
-  <main id="totw">
+</div>
+  <main>
     <div class="container">
       <div class="row">
-        <div id="arriving" class="col-12-sm center">
-          <div class="arriving">
-            <h2 id="bb">Bokningen behandlas</h2>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12 center">
+              <h3>Logga in för färdtjänst</h3>
+              <form name = "login">
+                <input type="text" name="userid" placeholder="Användarnamn"  />
+                <input type="password" name="pswrd" placeholder="Lösenord" />
+                <button type="button" onclick="check(this.form)" value="login"> Logga in </button>
+              </form>
+            </div>
           </div>
-          <div class="loader"></div>
+          <div class="row">
+            <div class="col-12 center">
 
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
   </main>
   <footer>
     <p>

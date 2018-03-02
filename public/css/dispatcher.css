@@ -1,0 +1,193 @@
+
+body {
+    font-family: 'Didact Gothic';font-size: 18px;
+    font-weight: bolder;
+    background-color: #e5e5e5;
+}
+
+hr {
+    height: 2px;
+    background-color: #000000;
+    border-width: 0px;
+}
+
+#my-map {
+    width: 100%;
+    height: 70%;
+    position: absolute;
+    z-index: -1;
+    top: 5%;
+    left: 0;
+    display: inline-block;
+    float: top;
+    overflow: hidden;
+}
+
+.popup-list {
+    padding-left: 0;
+}
+
+#navBar {
+    background-color: #fca311;
+    width: 100%;
+    height: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 0 7px 20px -5px #000000;
+}
+
+#navBar button {
+    background-color: #fca311;
+    height: 100%;
+    border: none;
+    color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Didact Gothic';font-size: 18px;
+    font-weight: bolder;
+}
+
+#navBar button:focus {
+    outline: none;
+}
+
+#navBar button:hover {
+    cursor: pointer;
+}
+
+#incoming {
+    margin-left: 15px;
+}
+
+#dots {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: url(/img/polacks.jpg);
+    background-repeat: no-repeat;
+    width:1920px;
+    height: 1078px;
+    cursor: crosshair;
+}
+
+#dots div {
+    position: absolute;
+    background: #000000;
+    color: #ffffff;
+    border-radius: 10px;
+    width:20px;
+    height:20px;
+    text-align: center;
+}
+
+#orderList {
+    top:1em;
+    left:1em;
+    position: absolute;
+    z-index: 2;
+    color: #000000;
+    background: rgba(255,255,255, 0.5);
+    padding: 1em;
+}
+
+#overview {
+    background-color: #e5e5e5;
+    width: 100%;
+    position: absolute;
+    top: 75%;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 -7px 20px -5px #000000;
+}
+
+#orders {
+    background-color: #e5e5e5;
+    width: 49%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#cars {
+    background-color: #e5e5e5;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 1%;
+}
+
+#inTrafficView {
+    background-color: #e5e5e5;
+    width: 99%;
+    margin-right: 1%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.viewMoreButton {
+    background-color: #fca311;
+    height: 100%;
+    border: none;
+    color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    float: right;
+    font-family: 'Didact Gothic';font-size: 13px;
+    font-weight: bolder;
+}
+
+.assignTaxi {
+    float: right;
+    padding-top: 2%;
+    text-align: right;
+}
+
+.assignTaxi select {
+    background-color: #fca311;
+    cursor: pointer;
+    border: none;
+    color: #ffffff;
+    outline: none;
+
+    padding-left: 4px;
+    padding-right: 4px;
+    text-align: center;
+    font-family: 'Didact Gothic';font-size: 16px;
+    font-weight: bolder;
+}
+
+.assignTaxi option {
+    outline: none;
+    border: none;
+}
+
+.viewMoreButton:focus {
+    outline: none;
+}
+
+.viewMoreButton:hover {
+    cursor: pointer;
+}
+
+.eta {
+    float: right;
+    margin-right: 8%;
+}
+
+#taken {
+    color: #AA3E39;
+}
+
+#notTaken {
+    color: #2D882D;
+}

@@ -1,0 +1,67 @@
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="leaflet/leaflet.css">
+    <link href="css/simple-grid.css" rel="stylesheet" type="text/css"/>
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <script src="/vue/vue.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/leaflet/leaflet.js"></script>
+    <script src="js/driver.js" defer></script>
+</head>
+<body>
+<nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-2-sm">
+            </div>
+            <div class="col-8-sm">
+                <h2> Taxi-404 </h2>
+            </div>
+            <div class="col-2-sm">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+    </div>
+</nav>
+<main>
+    <div id="page" class="container">
+        <div class="row">
+            <div class="col-12 center">
+                <h3>
+                    Taxi id #{{ taxiId }}
+                </h3>
+                <div id="my-map">
+                </div>
+                <div v-for="order in orders" v-if="order.taxiId == taxiId">
+                    <h3>Order #{{ order.orderId}}<br></h3>
+                    Från: {{ order.fromAddress }}<br>
+                    Till: {{ order.destAddress }}
+                    <ul>
+                        <li v-for="(item,key) in order.orderItems">
+                            {{ key + ": " + item }}
+                        </li>
+                    </ul>
+                    <button v-on:click="acceptOrder(order)" v-show="available">
+                        Påbörja körning
+                    </button>
+                    <button v-show="!available" type="button" id="startC" v-on:click="finishOrder(order.orderId)">
+                        Avsluta körning
+                    </button>
+                </div>
+                <h3 v-show = "waiting" >Invänta körning</h3>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <p>
+        &#169; Taxi-404
+    </p>
+</footer>
+</body>
+</html>
