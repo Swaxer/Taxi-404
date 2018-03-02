@@ -151,6 +151,7 @@ var vm = new Vue({
                 destAddress: this.placeQueryDest,
                 orderItems: this.orderItems
             });
+            location.href='/bekrafta';
         }
     }
 });
