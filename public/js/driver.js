@@ -13,6 +13,7 @@ var vm = new Vue({
         orders: {},
         customerMarkers: {},
         available: true,
+        waiting: true,
     },
     created: function () {
         socket.on('initialize', function (data) {
@@ -20,6 +21,7 @@ var vm = new Vue({
         }.bind(this));
         socket.on('currentQueue', function (data) {
             this.orders = data.orders;
+            this.waiting = false;
         }.bind(this));
         // this icon is not reactive
         this.taxiIcon = L.icon({
@@ -102,6 +104,7 @@ var vm = new Vue({
             Vue.delete(this.customerMarkers);
             socket.emit("finishOrder", orderId);
             this.available = true;
+            this.waiting = true;
         },
         putCustomerMarkers: function (order) {
             var fromMarker = L.marker(order.fromLatLong, {icon: this.fromIcon}).addTo(this.map);

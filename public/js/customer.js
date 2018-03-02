@@ -20,7 +20,7 @@ var vm = new Vue({
           kids: false,
         },
         pickupTime: null,
-        additionalInfo: null,
+        additionalInfo: "",
         placeQueryFrom: "",
         placeQueryDest: "",
         orderItems: {},

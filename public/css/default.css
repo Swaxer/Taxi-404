@@ -149,6 +149,13 @@ footer {
 
 }
 
+#my-map {
+    width: 100%;
+    height: 30%;
+    border: 0px;
+    z-index: 8;
+}
+
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
     transition: margin-left .5s;
