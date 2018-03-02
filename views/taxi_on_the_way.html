@@ -5,6 +5,8 @@
   <link href="css/otw.css" rel="stylesheet" type="text/css" />
   <link href="css/default.css" rel="stylesheet" type="text/css" />
   <link href="css/simple-grid.css" rel="stylesheet" type="text/css" />
+  <script src="js/sidenav.js" defer></script>
+
 
 </head>
 
@@ -17,7 +19,7 @@
         <div class="col-8-sm">
           <h2> Taxi-404 </h2>
         </div>
-        <div class="col-2-sm">
+        <div class="col-2-sm" onclick="toggleNav()">
           <div class="bar1"></div>
           <div class="bar2"></div>
           <div class="bar3"></div>
@@ -25,6 +27,11 @@
       </div>
     </div>
   </nav>
+  <div id="mySidenav" class="sidenav">
+  <a href="/fardtjanst">Färdtjänst</a>
+  <a href="/client">Vanlig taxi</a>
+  <a href="#">Om oss</a>
+</div>
   <main id="totw">
 
     <div class="container">
