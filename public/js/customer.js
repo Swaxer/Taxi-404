@@ -147,6 +147,8 @@ var vm = new Vue({
             socket.emit("orderTaxi", {
                 fromLatLong: [this.fromMarker.getLatLng().lat, this.fromMarker.getLatLng().lng],
                 destLatLong: [this.destMarker.getLatLng().lat, this.destMarker.getLatLng().lng],
+                fromAddress: this.placeQueryFrom,
+                destAddress: this.placeQueryDest,
                 orderItems: this.orderItems
             });
         }

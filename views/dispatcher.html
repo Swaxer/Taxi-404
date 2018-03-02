@@ -21,8 +21,8 @@
             <ul>
                 <li v-for="order in orders" v-if="!order.taxiIdConfirmed">
                     Order #{{ order.orderId }}<br>
-                    Från: {{ order.fromLatLong[0].toFixed(3) }}, {{ order.fromLatLong[1].toFixed(3) }}
-                    Till: {{ order.destLatLong[0].toFixed(3) }}, {{ order.destLatLong[1].toFixed(3) }}
+                    Från: {{ order.fromAddress }}
+                    Till: {{ order.destAddress }}
                     <button class="viewMoreButton" v-on:click="showMore(order.orderId)">
                         <b v-if="btnClickedId === order.orderId">Visa mindre</b>
                         <b v-else>Visa mer</b>
@@ -99,7 +99,7 @@
                     </button>
                     <b class="eta">
                         ETA: 14:00
-                        Destination: {{ order.destLatLong[0].toFixed(3) }}, {{ order.destLatLong[1].toFixed(3) }}
+                        Destination: {{ destAddress }}
                     </b>
                     <div v-show="viewMore && btnClickedId === order.orderId">
                         <ul>
