@@ -1,86 +1,91 @@
-body,html {
-  color: #fff;
-  background-color: #14213d;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  min-height: 100%;
+body, html {
+    color: #fff;
+    background-color: #14213d;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-height: 100%;
 }
 
 nav {
-  width: 100%;
-  height:60px;
-  background-color: #fca311;
-  margin: 0;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 9;
+    width: 100%;
+    height: 60px;
+    background-color: #fca311;
+    margin: 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 9;
 }
 
 nav h2 {
-  margin: 0;
-  padding: 0;
-  top: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
 }
 
 .bar1, .bar2, .bar3 {
-  width: 35px;
-  height: 5px;
-  background-color: #fff;
-  margin-top: 5px;
+    width: 35px;
+    height: 5px;
+    background-color: #fff;
+    margin-top: 5px;
 }
 
 img {
-  width: 100%;
+    width: 100%;
 }
+
 main {
-  color: #fff;
+    color: #fff;
 }
 
 input {
-  width: 100%;
-  height: 10%;
-  margin-bottom: 10px;
-  font-size: 100%;
-  text-align: center;
+    width: 100%;
+    height: 10%;
+    margin-bottom: 10px;
+    font-size: 100%;
+    text-align: center;
 }
 
 input[type="checkbox"] {
-  height: auto;
-  width: auto;
-  transform:scale(2,2);
-  margin-bottom: 5px;
-  margin-top: 5px;
+    height: auto;
+    width: auto;
+    transform: scale(2, 2);
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 textarea {
-  width: 100%;
-  font-size: 100%;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 0;
+    width: 100%;
+    font-size: 100%;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 button {
-  width: 100%;
-  height: 10%;
-  margin-bottom: 10px;
-  font-size: 100%;
-  color: #fff;
-  background-color: #fca311;
-  border: 0;
+    width: 100%;
+    height: 10%;
+    margin-bottom: 10px;
+    font-size: 100%;
+    color: #fff;
+    background-color: #fca311;
+    border: 0;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 footer {
-  height: 30px;
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  background-color: #14213d;
-  text-align: center;
-  font-size: 100%;
+    height: 30px;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    background-color: #14213d;
+    text-align: center;
+    font-size: 100%;
 }
 
 .loader {
@@ -154,4 +159,8 @@ footer {
 @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
+}
+
+.popup-list {
+    padding-left: 0;
 }

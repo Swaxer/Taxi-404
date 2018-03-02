@@ -1,15 +1,22 @@
-<html>
-
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
-  <link href="css/simple-grid.css" rel="stylesheet" type="text/css" />
-  <link href="css/default.css" rel="stylesheet" type="text/css" />
-  <link href="css/client.css" rel="stylesheet" type="text/css"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <script src="js/client.js" defer></script>
-  <script src="js/sidenav.js" defer></script>
+    <link rel="stylesheet" href="leaflet/leaflet.css">
+    <link rel="stylesheet" href="/esri-leaflet-geocoder/esri-leaflet-geocoder.css">
+    <link href="css/simple-grid.css" rel="stylesheet" type="text/css"/>
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <link href="css/client.css" rel="stylesheet" type="text/css"/>
+    <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <script src="js/client.js" defer></script>
+    <script src="js/sidenav.js" defer></script>
 
+    <script src="/vue/vue.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/leaflet/leaflet.js"></script>
+    <script src="/esri-leaflet/esri-leaflet.js"></script>
+    <script src="/esri-leaflet-geocoder/esri-leaflet-geocoder.js"></script>
+    <script src="js/customer.js" defer></script>
 </head>
 
 <body>
@@ -33,94 +40,104 @@
   <a href="/fardtjanst">Färdtjänst</a>
   <a href="/client">Vanlig taxi</a>
   <a href="#">Om oss</a>
-</div>
+  </div>
 
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div id="main">
-</div>
-  <main>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <form>
-            <div class="row">
-              <div class="col-12 center">
-                <input type="text" name="from" placeholder="Vart vill du bli hämtad?" required="required" />
-                <input type="text" name="to" placeholder="Vart vill du bli lämnad?" required="required" />
-              </div>
+<main>
+    <div class="container" id="container">
+
+        <div id="my-map"></div>
+
+        <div class="row">
+            <div class="col-12">
+                <form>
+                    <div class="row">
+                        <div class="col-12 center">
+                            <input type="text" name="from" v-model="placeQueryFrom" v-on:input="searchAddressFrom"
+                                   placeholder="Vart vill du bli hämtad?" required="required"/>
+                            <ol class="addressAlternativeList">
+                                <li class="addressAlternative" v-for="addr in fromMarker" v-if="addr.score > 72"
+                                    v-on:click="getAddressFrom(addr.latlng, addr.text)">
+                                    {{ addr.text }}
+                                </li>
+                            </ol>
+                            <input type="text" name="to" v-model="placeQueryDest" v-on:input="searchAddressDest"
+                                   placeholder="Vart vill du bli lämnad?" required="required"/>
+                            <ol class="addressAlternativeList">
+                                <li class="addressAlternative" v-for="addr in destMarker" v-if="addr.score > 72"
+                                    v-on:click="getAddressDest(addr.latlng, addr.text)">
+                                    {{ addr.text }}
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div id="alt-form">
+                        <div class="row">
+                            <div class="col-12 center">
+                                <input v-model="pickupTime" type="datetime-local" name="date"/>
+                            </div>
+                        </div>
+                        <div class="row taxiSelect" id="car-wrapper">
+                            <div class="col-6-sm center">
+                                <div id="removeSmallTaxi" v-on:click="removeSmallTaxi">
+                                    -
+                                </div>
+                                <div id="addSmallTaxi" v-on:click="addSmallTaxi">
+                                    +
+                                </div>
+                                <img src="img/small-taxi.png" class="imgTaxi"/>
+                                <h2 id="smallTaxiAmount">
+                                  {{smallTaxi}}
+                                </h2>
+                            </div>
+                            <div class="col-6-sm center" id="largeTaxi">
+                                <div id="removeLargeTaxi" v-on:click="removeLargeTaxi">
+                                    -
+                                </div>
+                                <div id="addLargeTaxi" v-on:click="addLargeTaxi">
+                                    +
+                                </div>
+                                <img src="img/big-taxi.png" class="imgTaxi"/>
+                                <h2 id="largeTaxiAmount">
+                                    {{largeTaxi}}
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="row" id="requests">
+                            <div class="col-4-sm center" id="vegetable">
+                                <p> Rullstol </p>
+                                <input v-model="checkboxes.wheelchair" type="checkbox" class="checkbox"/>
+                            </div>
+                            <div class="col-4-sm center" id="animals">
+                                <p> Djur </p>
+                                <input v-model="checkboxes.animals" type="checkbox" class="checkbox"/>
+                            </div>
+                            <div class="col-4-sm center" id="child">
+                                <p> Barn </p>
+                                <input v-model="checkboxes.kids" type="checkbox" class="checkbox"/>
+                            </div>
+                            <div class="col-12 center">
+                                <textarea v-model="additionalInfo" id="additional-info" placeholder="Additional information" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 center">
+                            <button type="button" id="alternativ" onclick='toggleAlternativ()'> Fler alternativ</button>
+                            <button type="button" v-on:click="orderTaxi" onclick="location.href='/bekrafta'">
+                                Boka nu
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div id="alt-form">
-              <div class="row">
-                <div class="col-12 center">
-                  <input type="datetime-local" name="date" />
-                </div>
-              </div>
-              <div class="row taxiSelect" id="car-wrapper">
-                <div class="col-6-sm center">
-                  <h3> Liten taxi </h3>
-                  <p>
-                     ( 4pers )
-                  </p>
-                  <div id="removeSmallTaxi" onclick="removeSmallTaxi()">
-                    -
-                  </div>
-                  <div id="addSmallTaxi" onclick="addSmallTaxi()">
-                    +
-                  </div>
-                  <img src="img/small-taxi.png" class="imgTaxi" />
-                  <h2 id="smallTaxiAmount">1</h2>
-                </div>
-                <div class="col-6-sm center" id="largeTaxi">
-                  <h3> Stor taxi </h3>
-                  <p>
-                     ( 7pers )
-                  </p>
-                  <div id="removeLargeTaxi" onclick="removeLargeTaxi()">
-                    -
-                  </div>
-                  <div id="addLargeTaxi" onclick="addLargeTaxi()">
-                    +
-                  </div>
-                  <img src="img/big-taxi.png" class="imgTaxi" />
-                  <h2 id="largeTaxiAmount">
-                  0
-                </h2>
-                </div>
-              </div>
-              <div class="row" id="requests">
-                <div class="col-4-sm center" id="vegetable">
-                  <p> Rullstol </p>
-                  <input type="checkbox" class="checkbox" />
-                </div>
-                <div class="col-4-sm center" id="animals">
-                  <p> Djur </p>
-                  <input type="checkbox" class="checkbox" />
-                </div>
-                <div class="col-4-sm center" id="child">
-                  <p> Barn </p>
-                  <input type="checkbox" class="checkbox" />
-                </div>
-                <div class="col-12 center">
-                  <textarea id="additional-info" placeholder="Additional information" rows="4"></textarea>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 center">
-                <button type="button" id="alternativ" onclick='toggleAlternativ()'> Fler alternativ </button>
-                <button type="button" onclick="location.href='/bekrafta'"> Boka nu </button>
-              </div>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
-  </main>
-  <footer>
+</main>
+<footer>
     <p>
-      &#169; Taxi-404
+        &#169; Taxi-404
     </p>
-  </footer>
+</footer>
 </body>
 
 </html>
