@@ -1,4 +1,5 @@
 var alt_enable = false;
+var nav_enable = false;
 function toggleAlternativ(){
   var elem = document.getElementById("alt-form");
   var button = document.getElementById("alternativ");
@@ -40,5 +41,26 @@ function removeLargeTaxi(){
   if (largeTaxi > 0){
     --largeTaxi;
     elem.innerHTML = largeTaxi;
+  }
+}
+/* Sets the width of the side navigation to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+/* Sets the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+
+function toggleNav(){
+  if (nav_enable) {
+      closeNav();
+      nav_enable = false;
+  }
+  else {
+    openNav();
+    nav_enable = true;
+
   }
 }
