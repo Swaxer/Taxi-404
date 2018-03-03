@@ -10,6 +10,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/leaflet/leaflet.js"></script>
     <script src="js/driver.js" defer></script>
+    <script src="js/sidenav.js" defer></script>
 </head>
 <body>
 <nav>
@@ -20,7 +21,7 @@
             <div class="col-8-sm">
                 <h2> Taxi-404 </h2>
             </div>
-            <div class="col-2-sm">
+            <div class="col-2-sm" onclick="toggleNav()">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
                 <div class="bar3"></div>
@@ -28,6 +29,10 @@
         </div>
     </div>
 </nav>
+<div id="mySidenav" class="sidenav">
+    <a href="#">Ring trafikledare</a>
+    <a href="/driver">Logga ut</a>
+</div>
 <main>
     <div id="page" class="container">
         <div class="row">
@@ -40,7 +45,9 @@
                 <div v-for="order in orders" v-if="order.taxiId == taxiId">
                     <h3>Order #{{ order.orderId}}<br></h3>
                     Från: {{ order.fromAddress }}<br>
-                    Till: {{ order.destAddress }}
+                    Till: {{ order.destAddress }}<br>
+                    Telefonnr: {{ order.phone }}<br>
+                    Namn: {{ order.name }}
                     <ul>
                         <li v-for="(item,key) in order.orderItems">
                             {{ key + ": " + item }}

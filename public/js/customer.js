@@ -15,15 +15,18 @@ var vm = new Vue({
         smallTaxi: 1,
         largeTaxi: 0,
         checkboxes: {
-          wheelchair: false,
-          animals: false,
-          kids: false,
+            wheelchair: false,
+            animals: false,
+            kids: false,
         },
         pickupTime: null,
         additionalInfo: "",
         placeQueryFrom: "",
         placeQueryDest: "",
         orderItems: {},
+        confirmView: false,
+        name: "",
+        phone: "",
     },
     created: function () {
         socket.on('orderId', function (orderId) {
@@ -70,19 +73,19 @@ var vm = new Vue({
     methods: {
         searchAddressFrom: function () {
             var southWest = L.latLng(57, 20),
-                            northEast = L.latLng(63, 14),
-                            bounds = L.latLngBounds(southWest, northEast);
-                            L.esri.Geocoding.geocode().address(this.placeQueryFrom).city("Uppsala").country("Sweden").run(function (err, response) {
-                                this.fromMarker = response.results;
-                            }.bind(this));
+                northEast = L.latLng(63, 14),
+                bounds = L.latLngBounds(southWest, northEast);
+            L.esri.Geocoding.geocode().address(this.placeQueryFrom).city("Uppsala").country("Sweden").run(function (err, response) {
+                this.fromMarker = response.results;
+            }.bind(this));
         },
         searchAddressDest: function () {
             var southWest = L.latLng(57, 20),
-                            northEast = L.latLng(63, 14),
-                            bounds = L.latLngBounds(southWest, northEast);
-                            L.esri.Geocoding.geocode().address(this.placeQueryDest).city("Uppsala").country("Sweden").run(function (err, response) {
-                                this.destMarker = response.results;
-                            }.bind(this));
+                northEast = L.latLng(63, 14),
+                bounds = L.latLngBounds(southWest, northEast);
+            L.esri.Geocoding.geocode().address(this.placeQueryDest).city("Uppsala").country("Sweden").run(function (err, response) {
+                this.destMarker = response.results;
+            }.bind(this));
         },
         getAddressFrom: function (latLng, address) {
             this.fromMarker = L.marker(latLng).addTo(this.map);
@@ -92,66 +95,68 @@ var vm = new Vue({
             this.destMarker = L.marker(latLng).addTo(this.map);
             this.placeQueryDest = address;
         },
-        removeSmallTaxi: function(){
-          if (this.smallTaxi != 0){
-              this.smallTaxi = this.smallTaxi -1;
-          }
+        removeSmallTaxi: function () {
+            if (this.smallTaxi != 0) {
+                this.smallTaxi = this.smallTaxi - 1;
+            }
         },
-        addSmallTaxi: function(){
-          this.smallTaxi = this.smallTaxi +1;
+        addSmallTaxi: function () {
+            this.smallTaxi = this.smallTaxi + 1;
         },
-        removeLargeTaxi: function(){
-          if (this.largeTaxi != 0){
-              this.largeTaxi = this.largeTaxi -1;
-          }
+        removeLargeTaxi: function () {
+            if (this.largeTaxi != 0) {
+                this.largeTaxi = this.largeTaxi - 1;
+            }
         },
-        addLargeTaxi: function(){
-          this.largeTaxi = this.largeTaxi +1;
+        addLargeTaxi: function () {
+            this.largeTaxi = this.largeTaxi + 1;
         },
+        gatherInfo: function () {
+            this.confirmView = true;
+            if (this.pickupTime == null) {
+                var currentdate = new Date();
+                var datetime = currentdate.getDate() + "/"
+                    + (currentdate.getMonth() + 1) + "/"
+                    + currentdate.getFullYear() + " @ "
+                    + currentdate.getHours() + ":"
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds();
 
-        orderTaxi: function () {
-
-            if (this.pickupTime == null){
-              var currentdate = new Date();
-              var datetime = currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/"
-                + currentdate.getFullYear() + " @ "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds();
-
-              this.pickupTime = datetime;
+                this.pickupTime = datetime;
             }
 
             this.orderItems.datum = this.pickupTime;
 
-            if (this.smallTaxi != 0){
-              this.orderItems.litenTaxi = this.smallTaxi;
+            if (this.smallTaxi != 0) {
+                this.orderItems.litenTaxi = this.smallTaxi;
             }
-            if (this.largeTaxi != 0){
-              this.orderItems.storTaxi = this.largeTaxi;
+            if (this.largeTaxi != 0) {
+                this.orderItems.storTaxi = this.largeTaxi;
             }
-            if (this.checkboxes.wheelchair){
-              this.orderItems.rullstol = "Ja";
+            if (this.checkboxes.wheelchair) {
+                this.orderItems.rullstol = "Ja";
             }
-            if (this.checkboxes.animals){
-              this.orderItems.djur = "Ja";
+            if (this.checkboxes.animals) {
+                this.orderItems.djur = "Ja";
             }
-            if (this.checkboxes.kids){
-              this.orderItems.barn = "Ja"
+            if (this.checkboxes.kids) {
+                this.orderItems.barn = "Ja"
             }
-            if (this.additionalInfo != ""){
-              this.orderItems.info = this.additionalInfo;
+            if (this.additionalInfo != "") {
+                this.orderItems.info = this.additionalInfo;
             }
-
+        },
+        orderTaxi: function () {
             socket.emit("orderTaxi", {
                 fromLatLong: [this.fromMarker.getLatLng().lat, this.fromMarker.getLatLng().lng],
                 destLatLong: [this.destMarker.getLatLng().lat, this.destMarker.getLatLng().lng],
                 fromAddress: this.placeQueryFrom,
                 destAddress: this.placeQueryDest,
-                orderItems: this.orderItems
+                orderItems: this.orderItems,
+                name: this.name,
+                phone: this.phone
             });
-            location.href='/bekrafta';
+            location.href = '/bokning_behandlas';
         }
     }
 });

@@ -20,28 +20,27 @@
 </head>
 
 <body>
-  <nav>
+<nav>
     <div class="container">
-      <div class="row">
-        <div class="col-2-sm">
+        <div class="row">
+            <div class="col-2-sm">
+            </div>
+            <div class="col-8-sm">
+                <h2> Taxi-404 </h2>
+            </div>
+            <div class="col-2-sm" onclick="toggleNav()">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
         </div>
-        <div class="col-8-sm">
-          <h2> Taxi-404 </h2>
-        </div>
-        <div class="col-2-sm" onclick="toggleNav()">
-          <div class="bar1"></div>
-          <div class="bar2"></div>
-          <div class="bar3"></div>
-        </div>
-      </div>
     </div>
-  </nav>
-  <div id="mySidenav" class="sidenav">
-  <a href="/fardtjanst">Färdtjänst</a>
-  <a href="/client">Vanlig taxi</a>
-  <a href="#">Om oss</a>
-  </div>
-
+</nav>
+<div id="mySidenav" class="sidenav">
+    <a href="/fardtjanst">Färdtjänst</a>
+    <a href="/">Vanlig taxi</a>
+    <a href="#">Om oss</a>
+</div>
 <main>
     <div class="container" id="container">
 
@@ -49,7 +48,7 @@
 
         <div class="row">
             <div class="col-12">
-                <form>
+                <form v-show="!confirmView">
                     <div class="row">
                         <div class="col-12 center">
                             <input type="text" name="from" v-model="placeQueryFrom" v-on:input="searchAddressFrom"
@@ -86,7 +85,7 @@
                                 </div>
                                 <img src="img/small-taxi.png" class="imgTaxi"/>
                                 <h2 id="smallTaxiAmount">
-                                  {{smallTaxi}}
+                                    {{ smallTaxi }}
                                 </h2>
                             </div>
                             <div class="col-6-sm center" id="largeTaxi">
@@ -98,7 +97,7 @@
                                 </div>
                                 <img src="img/big-taxi.png" class="imgTaxi"/>
                                 <h2 id="largeTaxiAmount">
-                                    {{largeTaxi}}
+                                    {{ largeTaxi }}
                                 </h2>
                             </div>
                         </div>
@@ -123,15 +122,45 @@
                     <div class="row">
                         <div class="col-12 center">
                             <button type="button" id="alternativ" onclick='toggleAlternativ()'> Fler alternativ</button>
-                            <button type="button" v-on:click="orderTaxi">
+                            <button type="button" v-on:click="gatherInfo">
                                 Boka nu
                             </button>
                         </div>
                     </div>
                 </form>
+
+                <div v-show="confirmView">
+                    <div class="row">
+                        <div class="col-12 center">
+                            <div class="col-12 left">
+                                <h3> Din bokning: </h3>
+                                Från: {{ placeQueryFrom }}<br>
+                                Till: {{ placeQueryDest }}
+                                <ul>
+                                    <li v-for="(item, key) in orderItems">
+                                        {{ key + ": " + item }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <form>
+                                <input v-model="name" type="text" placeholder="För- och efternamn" required="required" />
+                                <input v-model="phone" type="text" placeholder="Telefonnummer" pattern="^[0-9]*$" required="required" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 center">
+                            <button type="button" v-on:click="confirmView = false">
+                                Ändra bokning
+                            </button>
+                            <button type="button" v-on:click="orderTaxi">
+                                Bekräfta bokning
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 </main>
 <footer>
     <p>

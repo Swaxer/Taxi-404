@@ -61,7 +61,7 @@
                         <b class="eta">ETA: 14:00 Destination: {{ taxi.latLong[0].toFixed(3) }}, {{ taxi.latLong[1].toFixed(3) }}</b>
                     </div>
                     <div v-else>
-                        Taxi #{{ taxi.taxiId }} Pos: {{ taxi.latLong[0].toFixed(3) }}, {{ taxi.latLong[1].toFixed(3) }}<br>
+                        Taxi #{{ taxi.taxiId }}<br>
                         <button class="viewMoreButton" v-on:click="showMore(taxi.taxiId)">
                             <b v-if="btnClickedId === taxi.taxiId">Visa mindre</b>
                             <b v-else>Visa mer</b>
