@@ -17,9 +17,9 @@
 <div id="page">
     <div id="my-map"></div>
     <div id="overview">
-        <div id="orders" v-show="ordersView">
+        <div id="orders" v-show="ordersView && !fardtjanstView">
             <ul>
-                <li v-for="order in orders" v-if="!order.taxiIdConfirmed">
+                <li v-for="order in orders" v-if="!order.taxiIdConfirmed && !order.fardtjanst">
                     Order #{{ order.orderId }}<br>
                     Från: {{ order.fromAddress }}
                     Till: {{ order.destAddress }}
@@ -36,6 +36,7 @@
                                 </option>
                             </select><br>
                         </div>
+                        Telefonnummer: {{ order.phone }}
                         <ul>
                             <li v-for="(item, key) in order.orderItems">
                                 {{ key + ": " + item }}
@@ -46,7 +47,37 @@
                 </li>
             </ul>
         </div>
-        <div id="cars" v-show="ordersView">
+        <div id="fardtjanstOrders" v-show="fardtjanstView && !ordersView">
+            <ul>
+                <li v-for="order in orders" v-if="!order.taxiIdConfirmed && order.fardtjanst">
+                    Order #{{ order.orderId }}<br>
+                    Från: {{ order.fromAddress }}
+                    Till: {{ order.destAddress }}
+                    <button class="viewMoreButton" v-on:click="showMore(order.orderId)">
+                        <b v-if="btnClickedId === order.orderId">Visa mindre</b>
+                        <b v-else>Visa mer</b>
+                    </button>
+                    <div v-show="viewMore && btnClickedId === order.orderId">
+                        <div class="assignTaxi">
+                            <label for="dropDown">Tilldela körning</label><br>
+                            <select id="dropDown" v-on:change="assignTaxi(order)" v-model="order.taxiId">
+                                <option v-for="taxi in taxis" :value="taxi.taxiId">
+                                    Taxi #{{ taxi.taxiId}}
+                                </option>
+                            </select><br>
+                        </div>
+                        Telefonnummer: {{ order.phone }}
+                        <ul>
+                            <li v-for="(item, key) in order.orderItems">
+                                {{ key + ": " + item }}
+                            </li>
+                        </ul>
+                    </div>
+                    <hr>
+                </li>
+            </ul>
+        </div>
+        <div id="cars" v-show="ordersView || fardtjanstView">
             <ul>
                 <li v-for="taxi in taxis" :value="taxi.taxiId">
                     <div v-if="taken(taxi.taxiId)">
@@ -86,7 +117,7 @@
                 </li>
             </ul>
         </div>
-        <div id="inTrafficView" v-show="!ordersView">
+        <div id="inTrafficView" v-show="!ordersView && !fardtjanstView">
             <ul>
                 <li v-for="order in orders" v-if="order.taxiIdConfirmed">
                     Order #{{ order.orderId }}<br>
@@ -114,9 +145,9 @@
         </div>
     </div>
     <div id="navBar">
-        <button id="incoming" v-on:click="ordersView = true">Inkommande körningar</button>
-        <button id="inTraffic" v-on:click="ordersView = false">Tilldelade körningar</button>
-        <button id="fardtjanst">Färdtjänst</button>
+        <button id="incoming" v-on:click="displayIncoming">Inkommande körningar</button>
+        <button id="inTraffic" v-on:click="displayInTraffic">Tilldelade körningar</button>
+        <button id="fardtjanst" v-on:click="displayFardtjanst">Färdtjänst</button>
     </div>
 </div>
 </body>
