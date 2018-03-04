@@ -7,6 +7,8 @@ var socket = io();
 var vm = new Vue({
     el: '#container',
     data: {
+        fardtjanst: false,
+        fardtjanstView: false,
         orderId: null,
         map: null,
         fromMarker: null,
@@ -27,6 +29,8 @@ var vm = new Vue({
         confirmView: false,
         name: "",
         phone: "",
+        login: "",
+        password: "",
     },
     created: function () {
         socket.on('orderId', function (orderId) {
@@ -146,6 +150,39 @@ var vm = new Vue({
                 this.orderItems.info = this.additionalInfo;
             }
         },
+
+        check: function(form)/*function to check userid & password*/
+        {
+         /*the following code checkes whether the entered userid and password are matching*/
+         if(this.login == "Frallan" && this.password == "Rövgren")
+          {
+            this.fardtjanst = true;
+            this.fardtjanstView = false;
+            this.confirmView = false;
+          }
+         else
+         {
+           alert("Error wrong Password or Username")/*displays error message*/
+          }
+        },
+
+        toggleFardtjanst: function(){
+          if (this.fardtjanst && this.fardtjanstView){
+            this.fardtjanst = false;
+            this.fardtjanstView = false;
+          }
+          else if (this.fardtjanstView){
+            this.fardtjanstView = false;
+          }
+          else if (this.fardtjanst){
+            this.fardtjanstView = false;
+            this.fardtjanst = false;
+          }
+          else {
+            this.fardtjanstView = true
+          }
+        },
+
         orderTaxi: function () {
             socket.emit("orderTaxi", {
                 fromLatLong: [this.fromMarker.getLatLng().lat, this.fromMarker.getLatLng().lng],
@@ -154,7 +191,8 @@ var vm = new Vue({
                 destAddress: this.placeQueryDest,
                 orderItems: this.orderItems,
                 name: this.name,
-                phone: this.phone
+                phone: this.phone,
+                fardtjanst: this.fardtjanst,
             });
             location.href = '/bokning_behandlas';
         }
