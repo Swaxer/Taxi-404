@@ -7,11 +7,6 @@ var socket = io();
 var vm = new Vue({
     el: '#container',
     data: {
-        // views
-        // 0 = vanligTaxi
-        // 1 = confirmView
-        // 2 = fardtjanstView
-        // 3 = taxiOnTheWayView
         views: 0,
         fardtjanst: false,
         orderId: null,
@@ -175,7 +170,7 @@ var vm = new Vue({
             this.views = 0;
           }
           else if (this.views == 2){
-            this.fardtjanstView = false;
+            this.views = 0;
           }
           else if (this.fardtjanst){
             this.fardtjanst = false;
