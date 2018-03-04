@@ -7,8 +7,13 @@ var socket = io();
 var vm = new Vue({
     el: '#container',
     data: {
+        // views
+        // 0 = vanligTaxi
+        // 1 = confirmView
+        // 2 = fardtjanstView
+        // 3 = taxiOnTheWayView
+        views: 0,
         fardtjanst: false,
-        fardtjanstView: false,
         orderId: null,
         map: null,
         fromMarker: null,
@@ -26,7 +31,6 @@ var vm = new Vue({
         placeQueryFrom: "",
         placeQueryDest: "",
         orderItems: {},
-        confirmView: false,
         name: "",
         phone: "",
         login: "",
@@ -157,8 +161,7 @@ var vm = new Vue({
          if(this.login == "Frallan" && this.password == "Rövgren")
           {
             this.fardtjanst = true;
-            this.fardtjanstView = false;
-            this.confirmView = false;
+            this.views = 0;
           }
          else
          {
@@ -167,19 +170,19 @@ var vm = new Vue({
         },
 
         toggleFardtjanst: function(){
-          if (this.fardtjanst && this.fardtjanstView){
+          if (this.fardtjanst && this.views == 2){
             this.fardtjanst = false;
-            this.fardtjanstView = false;
+            this.views = 0;
           }
-          else if (this.fardtjanstView){
+          else if (this.views == 2){
             this.fardtjanstView = false;
           }
           else if (this.fardtjanst){
-            this.fardtjanstView = false;
             this.fardtjanst = false;
+            this.views = 0;
           }
           else {
-            this.fardtjanstView = true
+            this.views = 2;
           }
         },
 

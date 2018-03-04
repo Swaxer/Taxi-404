@@ -50,7 +50,7 @@
 
         <div class="row">
             <div class="col-12">
-                <form v-show="(!confirmView && !fardtjanstView)">
+                <form v-if="views == 0">
                     <div class="row">
                         <div class="col-12 center">
                             <input type="text" name="from" v-model="placeQueryFrom" v-on:input="searchAddressFrom"
@@ -131,7 +131,7 @@
                     </div>
                 </form>
 
-                <div v-show="(confirmView && !fardtjanstView)">
+                <div v-if="views == 1">
                     <div class="row">
                         <div class="col-12 center">
                             <div class="col-12 left">
@@ -165,7 +165,7 @@
                 </div>
             </div>
 
-            <div v-show="(fardtjanstView)">
+            <div v-if="views == 2">
               <div class="row">
                 <div class="col-12">
                   <div class="row">
