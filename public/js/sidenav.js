@@ -2,7 +2,8 @@
 var nav_enable = false;
 
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+  var nav = document.getElementById("mySidenav");
+  nav.style.width = "300px";
 }
 
 /* Sets the width of the side navigation to 0 */

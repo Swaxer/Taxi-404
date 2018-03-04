@@ -36,19 +36,21 @@
         </div>
     </div>
 </nav>
-<div id="mySidenav" class="sidenav">
-    <a href="/fardtjanst">Färdtjänst</a>
-    <a href="/">Vanlig taxi</a>
-    <a href="#">Om oss</a>
-</div>
+
 <main>
     <div class="container" id="container">
+      <div id="mySidenav" class="sidenav">
+
+          <a href="#" v-on:click="toggleFardtjanst" v-if="fardtjanst || views == 2">Byt till vanlig taxi</a>
+          <a href="#" v-on:click="toggleFardtjanst" v-else> Byt till färdtjänst </a>
+
+      </div>
 
         <div id="my-map"></div>
 
         <div class="row">
             <div class="col-12">
-                <form v-show="!confirmView">
+                <form v-if="views == 0">
                     <div class="row">
                         <div class="col-12 center">
                             <input type="text" name="from" v-model="placeQueryFrom" v-on:input="searchAddressFrom"
@@ -129,10 +131,12 @@
                     </div>
                 </form>
 
-                <div v-show="confirmView">
+                <div v-if="views == 1">
                     <div class="row">
                         <div class="col-12 center">
                             <div class="col-12 left">
+                                <h2 v-if="fardtjanst"> Färdtjänst </h2>
+                                <h2 v-else> Vanlig taxi </h2>
                                 <h3> Din bokning: </h3>
                                 Från: {{ placeQueryFrom }}<br>
                                 Till: {{ placeQueryDest }}
@@ -160,6 +164,30 @@
                     </div>
                 </div>
             </div>
+
+            <div v-if="views == 2">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12 center">
+                      <h3>Logga in för färdtjänst</h3>
+                      <form name = "login">
+                        <input v-model="login" type="text" name="userid" placeholder="Användarnamn"  />
+                        <input v-model="password" type="password" name="pswrd" placeholder="Lösenord" />
+                        <button type="button" v-on:click="check(this.form)" value="login"> Logga in </button>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 center">
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
         </div>
 </main>
 <footer>
