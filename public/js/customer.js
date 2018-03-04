@@ -7,6 +7,12 @@ var socket = io();
 var vm = new Vue({
     el: '#container',
     data: {
+        // views
+        // 0 = vanligTaxi
+        // 1 = confirmView
+        // 2 = fardtjanstView
+        // 3 = bokning_behandlas
+        // 4 = taxiOnTheWayView
         views: 0,
         fardtjanst: false,
         orderId: null,
@@ -115,7 +121,7 @@ var vm = new Vue({
             this.largeTaxi = this.largeTaxi + 1;
         },
         gatherInfo: function () {
-            this.confirmView = true;
+            this.views = 1;
             if (this.pickupTime == null) {
                 var currentdate = new Date();
                 var datetime = currentdate.getDate() + "/"
@@ -192,7 +198,7 @@ var vm = new Vue({
                 phone: this.phone,
                 fardtjanst: this.fardtjanst,
             });
-            location.href = '/bokning_behandlas';
+            this.views = 3;
         }
     }
 });

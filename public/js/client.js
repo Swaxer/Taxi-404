@@ -31,6 +31,6 @@ var x = setInterval(function() {
 
   if (distance < 0) {
     clearInterval(x);
-  //  document.getElementById("ptimer").innerHTML = "Framme!";
+    //document.getElementById("ptimer").innerHTML = "Framme!";
   }
 }, 1000);
