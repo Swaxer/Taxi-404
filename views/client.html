@@ -155,7 +155,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12 center">
-                            <button type="button" v-on:click="confirmView = false">
+                            <button type="button" v-on:click="views = 0">
                                 Ändra bokning
                             </button>
                             <button type="button" v-on:click="orderTaxi">
@@ -175,7 +175,7 @@
                       <form name = "login">
                         <input v-model="login" type="text" name="userid" placeholder="Användarnamn"  />
                         <input v-model="password" type="password" name="pswrd" placeholder="Lösenord" />
-                        <button type="button" v-on:click="check(this.form)" value="login"> Logga in </button>
+                        <button type="button" v-on:click="check" value="login"> Logga in </button>
                       </form>
                     </div>
                   </div>
@@ -194,6 +194,7 @@
                     <div id="arriving" class="col-12-sm center">
                         <div class="arriving">
                             <h2 id="bb">Bokningen behandlas</h2>
+                            <h2 v-text="ptimer"></h2>
                         </div>
                         <div class="loader"></div>
 
@@ -201,18 +202,26 @@
                 </div>
             </div>
 
-            <!-- <div v-if="views == 4">
+            <div v-if="views == 4">
               <div class="row">
                 <div id="arriving" class="col-12-sm center">
                   <h2>Chauffören är påväg!</h2>
                   <div class="loader"></div>
                   <h2>Ankommer om ca: </h2>
                   <div class="timer">
-                    <p id="ptimer"></p>
+                    <p id="ptimer" v-text="ptimer">{{ptimer}}</p>
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div>
+
+            <div v-if="views == 5">
+              <div class="row">
+                <div id="arriving" class="col-12-sm center">
+                  <h2>Chauffören är framme</h2>
+                </div>
+              </div>
+            </div>
 
 
         </div>

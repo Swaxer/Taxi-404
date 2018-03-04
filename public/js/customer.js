@@ -13,6 +13,8 @@ var vm = new Vue({
         // 2 = fardtjanstView
         // 3 = bokning_behandlas
         // 4 = taxiOnTheWayView
+        distance: 0,
+        ptimer: "",
         views: 0,
         fardtjanst: false,
         orderId: null,
@@ -156,7 +158,7 @@ var vm = new Vue({
             }
         },
 
-        check: function(form)/*function to check userid & password*/
+        check: function()/*function to check userid & password*/
         {
          /*the following code checkes whether the entered userid and password are matching*/
          if(this.login == "Frallan" && this.password == "Rövgren")
@@ -187,6 +189,43 @@ var vm = new Vue({
           }
         },
 
+        updatetimer: function(time){
+          this.ptimer = time;
+        },
+
+        startTimer: function(){
+          var delay = 0.5;
+          var future = new Date().getTime() + delay*60000;
+
+          var x = setInterval(function() {
+            console.log("inside");
+            var now = new Date().getTime();
+            var distance = future - now;
+
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            this.ptimer = (hours + "h " + minutes + "m " + seconds + "s ");
+
+            if (distance < 0) {
+              clearInterval(x);
+              this.views = 5;
+            }
+          }.bind(this), 1000);
+        },
+
+        changeViewHandleBooking: function(){
+          this.views = 4;
+          this.startTimer();
+        },
+
+        bookingArrived: function(){
+          this.views = 3;
+          setTimeout(this.changeViewHandleBooking, 3000);
+
+        },
+
         orderTaxi: function () {
             socket.emit("orderTaxi", {
                 fromLatLong: [this.fromMarker.getLatLng().lat, this.fromMarker.getLatLng().lng],
@@ -198,7 +237,7 @@ var vm = new Vue({
                 phone: this.phone,
                 fardtjanst: this.fardtjanst,
             });
-            this.views = 3;
+            this.bookingArrived();
         }
     }
 });
