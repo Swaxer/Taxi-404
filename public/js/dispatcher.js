@@ -15,6 +15,7 @@ var vm = new Vue({
         showBtn: 'Visa mer',
         btnClickedId: '',
         ordersView: true,
+        fardtjanstView: false,
         smallTaxi: ["4 platser", "Bilbarnstol"],
         bigTaxi: ["7 platser", "Bilbarnstol", "Plats för hund"],
         smallOrBig: Math.floor(Math.random() * Math.floor(2)),
@@ -93,6 +94,18 @@ var vm = new Vue({
         }).addTo(this.map);
     },
     methods: {
+        displayIncoming: function () {
+            this.ordersView = true;
+            this.fardtjanstView = false;
+        },
+        displayInTraffic: function () {
+            this.ordersView = false;
+            this.fardtjanstView = false;
+        },
+        displayFardtjanst: function () {
+            this.ordersView = false;
+            this.fardtjanstView = true;
+        },
         showMore: function (orderId) {
             if (this.viewMore) {
                 this.btnClickedId = '';
