@@ -42,12 +42,20 @@
                 </h3>
                 <div id="my-map">
                 </div>
-                <div v-for="order in orders" v-if="order.taxiId == taxiId">
-                    <h3>Order #{{ order.orderId}}<br></h3>
-                    Från: {{ order.fromAddress }}<br>
-                    Till: {{ order.destAddress }}<br>
-                    Telefonnr: {{ order.phone }}<br>
-                    Namn: {{ order.name }}
+                <div v-for="order in orders" v-if="order.taxiId == taxiId" id="orderItems">
+                    <div v-if="!order.fardtjanst">
+                        <h3>Inkommande bokning #{{ order.orderId}}</h3>
+                        Från: {{ order.fromAddress }}<br>
+                        Till: {{ order.destAddress }}<br>
+                        Telefonnr: {{ order.phone }}<br>
+                        Namn: {{ order.name }}
+                    </div>
+                    <div v-if="order.fardtjanst">
+                        <h3>Färdtjänstbokning {{ order.name }}</h3>
+                        Från: {{ order.fromAddress }}<br>
+                        Till: {{ order.destAddress }}<br>
+                        Telefonnr: {{ order.phone }}
+                    </div>
                     <ul>
                         <li v-for="(item,key) in order.orderItems">
                             {{ key + ": " + item }}

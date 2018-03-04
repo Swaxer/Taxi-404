@@ -171,3 +171,7 @@ footer {
 .popup-list {
     padding-left: 0;
 }
+
+#orderItems {
+    text-align: left;
+}
