@@ -5,7 +5,7 @@
     <link href="css/simple-grid.css" rel="stylesheet" type="text/css"/>
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
     <link href="css/client.css" rel="stylesheet" type="text/css"/>
-    <link href="css/otw.css" rel="stylesheet" type="text/css" />
+    <link href="css/otw.css" rel="stylesheet" type="text/css"/>
     <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name=apple-mobile-web-app-capable content=yes>
     <meta name=apple-mobile-web-app-status-bar-style content=black>
@@ -40,12 +40,10 @@
 
 <main>
     <div class="container" id="container">
-      <div id="mySidenav" class="sidenav">
-
-          <a href="#" v-on:click="toggleFardtjanst" v-if="fardtjanst || views == 2">Byt till vanlig taxi</a>
-          <a href="#" v-on:click="toggleFardtjanst" v-else> Byt till färdtjänst </a>
-
-      </div>
+        <div id="mySidenav" class="sidenav">
+            <a href="#" v-on:click="toggleFardtjanst" v-if="fardtjanst || views == 2">Byt till vanlig taxi</a>
+            <a href="#" v-on:click="toggleFardtjanst" v-else> Byt till färdtjänst </a>
+        </div>
 
         <div id="my-map"></div>
 
@@ -118,7 +116,8 @@
                                 <input v-model="checkboxes.kids" type="checkbox" class="checkbox"/>
                             </div>
                             <div class="col-12 center">
-                                <textarea v-model="additionalInfo" id="additional-info" placeholder="Additional information" rows="4"></textarea>
+                                <textarea v-model="additionalInfo" id="additional-info"
+                                          placeholder="Additional information" rows="4"></textarea>
                             </div>
                         </div>
                     </div>
@@ -148,8 +147,10 @@
                                 </ul>
                             </div>
                             <form>
-                                <input v-show="!fardtjanst" v-model="name" type="text" placeholder="För- och efternamn" required="required" />
-                                <input v-show="!fardtjanst" v-model="phone" type="text" placeholder="Telefonnummer" pattern="^[0-9]*$" required="required" />
+                                <input v-show="!fardtjanst" v-model="name" type="text" placeholder="För- och efternamn"
+                                       required="required"/>
+                                <input v-show="!fardtjanst" v-model="phone" type="text" placeholder="Telefonnummer"
+                                       pattern="^[0-9]*$" required="required"/>
                             </form>
                         </div>
                     </div>
@@ -165,33 +166,31 @@
                     </div>
                 </div>
             </div>
-
             <div v-if="views == 2">
-              <div class="row">
-                <div class="col-12">
-                  <div class="row">
-                    <div class="col-12 center">
-                      <h3>Logga in för färdtjänst</h3>
-                      <form name = "login">
-                        <input v-model="login" type="text" name="userid" placeholder="Användarnamn"  />
-                        <input v-model="password" type="password" name="pswrd" placeholder="Lösenord" />
-                        <button type="button" v-on:click="check" value="login"> Logga in </button>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-12 center">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 center">
+                                <h3>Logga in för färdtjänst</h3>
+                                <form name="login">
+                                    <input v-model="login" type="text" name="userid" placeholder="Användarnamn"/>
+                                    <input v-model="password" type="password" name="pswrd" placeholder="Lösenord"/>
+                                    <button type="button" v-on:click="check" value="login"> Logga in</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 center">
 
 
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-
             <div v-if="views == 3">
                 <div class="row">
-                    <div id="arriving" class="col-12-sm center">
+                    <div class="col-12-sm center">
                         <div class="arriving">
                             <h2 id="bb">Bokningen behandlas</h2>
                             <h2 v-text="ptimer"></h2>
@@ -201,29 +200,25 @@
                     </div>
                 </div>
             </div>
-
             <div v-if="views == 4">
-              <div class="row">
-                <div id="arriving" class="col-12-sm center">
-                  <h2>Chauffören är påväg!</h2>
-                  <div class="loader"></div>
-                  <h2>Ankommer om ca: </h2>
-                  <div class="timer">
-                    <p id="ptimer" v-text="ptimer">{{ptimer}}</p>
-                  </div>
+                <div class="row">
+                    <div class="col-12-sm center">
+                        <h2>Chauffören är påväg!</h2>
+                        <div class="loader"></div>
+                        <h2>Ankommer om ca: </h2>
+                        <div class="timer">
+                            <p id="ptimer" v-text="ptimer">{{ptimer}}</p>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-
             <div v-if="views == 5">
-              <div class="row">
-                <div id="arriving" class="col-12-sm center">
-                  <h2>Chauffören är framme</h2>
+                <div class="row">
+                    <div class="col-12-sm center">
+                        <h2>Chauffören är framme</h2>
+                    </div>
                 </div>
-              </div>
             </div>
-
-
         </div>
 </main>
 <footer>

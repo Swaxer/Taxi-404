@@ -158,79 +158,77 @@ var vm = new Vue({
             }
         },
 
-        check: function()/*function to check userid & password*/
-        {
-         /*the following code checkes whether the entered userid and password are matching*/
-         if(this.login == "Frallan" && this.password == "Rövgren")
-          {
-            this.fardtjanst = true;
-            this.views = 0;
-          }
-         else
-         {
-           alert("Error wrong Password or Username")/*displays error message*/
-          }
-        },
-
-        toggleFardtjanst: function(){
-          if (this.fardtjanst && this.views == 2){
-            this.fardtjanst = false;
-            this.views = 0;
-          }
-          else if (this.views == 2){
-            this.views = 0;
-          }
-          else if (this.fardtjanst){
-            this.fardtjanst = false;
-            this.views = 0;
-          }
-          else {
-            this.views = 2;
-          }
-        },
-
-        updatetimer: function(time){
-          this.ptimer = time;
-        },
-
-        startTimer: function(){
-          var delay = 0.5;
-          var future = new Date().getTime() + delay*60000;
-
-          var x = setInterval(function() {
-            console.log("inside");
-            var now = new Date().getTime();
-            var distance = future - now;
-
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            this.ptimer = (hours + "h " + minutes + "m " + seconds + "s ");
-
-            if (distance < 0) {
-              clearInterval(x);
-              this.views = 5;
+        check: function ()/*function to check userid & password*/ {
+            /*the following code checkes whether the entered userid and password are matching*/
+            if (this.login == "Frallan" && this.password == "Rövgren") {
+                this.fardtjanst = true;
+                this.views = 0;
             }
-          }.bind(this), 1000);
+            else {
+                alert("Error wrong Password or Username")
+                /*displays error message*/
+            }
         },
 
-        changeViewHandleBooking: function(){
-          this.views = 4;
-          this.startTimer();
+        toggleFardtjanst: function () {
+            if (this.fardtjanst && this.views == 2) {
+                this.fardtjanst = false;
+                this.views = 0;
+            }
+            else if (this.views == 2) {
+                this.views = 0;
+            }
+            else if (this.fardtjanst) {
+                this.fardtjanst = false;
+                this.views = 0;
+            }
+            else {
+                this.views = 2;
+            }
         },
 
-        bookingArrived: function(){
-          this.views = 3;
-          setTimeout(this.changeViewHandleBooking, 3000);
+        updatetimer: function (time) {
+            this.ptimer = time;
+        },
+
+        startTimer: function () {
+            var delay = 0.5;
+            var future = new Date().getTime() + delay * 60000;
+
+            var x = setInterval(function () {
+                console.log("inside");
+                var now = new Date().getTime();
+                var distance = future - now;
+
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                this.ptimer = (hours + "h " + minutes + "m " + seconds + "s ");
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    this.views = 5;
+                }
+            }.bind(this), 1000);
+        },
+
+        changeViewHandleBooking: function () {
+            this.views = 4;
+            this.startTimer();
+        },
+
+        bookingArrived: function () {
+            this.views = 3;
+            setTimeout(this.changeViewHandleBooking, 3000);
 
         },
 
         orderTaxi: function () {
-          if (this.fardtjanst){
-            this.name = "Fredrik 'Frallan' Hjalmarsson";
-            this.phone = "073-5224422";
-          }
+            if (this.fardtjanst) {
+                this.name = "Fredrik 'Frallan' Hjalmarsson";
+                this.phone = "073-5224422";
+            }
             socket.emit("orderTaxi", {
                 fromLatLong: [this.fromMarker.getLatLng().lat, this.fromMarker.getLatLng().lng],
                 destLatLong: [this.destMarker.getLatLng().lat, this.destMarker.getLatLng().lng],
