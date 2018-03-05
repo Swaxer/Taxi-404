@@ -148,8 +148,8 @@
                                 </ul>
                             </div>
                             <form>
-                                <input v-model="name" type="text" placeholder="För- och efternamn" required="required" />
-                                <input v-model="phone" type="text" placeholder="Telefonnummer" pattern="^[0-9]*$" required="required" />
+                                <input v-show="!fardtjanst" v-model="name" type="text" placeholder="För- och efternamn" required="required" />
+                                <input v-show="!fardtjanst" v-model="phone" type="text" placeholder="Telefonnummer" pattern="^[0-9]*$" required="required" />
                             </form>
                         </div>
                     </div>

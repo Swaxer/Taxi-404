@@ -227,6 +227,10 @@ var vm = new Vue({
         },
 
         orderTaxi: function () {
+          if (this.fardtjanst){
+            this.name = "Fredrik 'Frallan' Hjalmarsson";
+            this.phone = "073-5224422";
+          }
             socket.emit("orderTaxi", {
                 fromLatLong: [this.fromMarker.getLatLng().lat, this.fromMarker.getLatLng().lng],
                 destLatLong: [this.destMarker.getLatLng().lat, this.destMarker.getLatLng().lng],
