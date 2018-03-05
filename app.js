@@ -23,7 +23,7 @@ app.use('/leaflet', express.static(path.join(__dirname, '/node_modules/leaflet/d
 app.use('/esri-leaflet', express.static(path.join(__dirname, '/node_modules/esri-leaflet/dist/')));
 // Serve esri leaflet geocoder from node_modules as esri-leaflet-geocoder/
 app.use('/esri-leaflet-geocoder', express.static(path.join(__dirname, '/node_modules/esri-leaflet-geocoder/dist/')));
-// Serve index.html directly as root page
+
 
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/client.html'));
@@ -31,18 +31,6 @@ app.get('/', function (req, res) {
 
 app.get('/client', function (req, res) {
     res.sendFile(path.join(__dirname, 'views/client.html'));
-});
-
-app.get('/bokning_behandlas', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/bokning_behandlas.html'));
-});
-
-app.get('/fardtjanst', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/fardtjanst.html'));
-});
-
-app.get('/taxi_on_the_way', function (req, res) {
-    res.sendFile(path.join(__dirname, 'views/taxi_on_the_way.html'));
 });
 
 app.get('/driver', function (req, res) {

@@ -89,7 +89,7 @@
                         <b v-if="taxi.taxiId < 500000">Stor bil </b>
                         <b v-else>Liten bil </b>
                         <b id="taken">Upptagen</b>
-                        <b class="eta">ETA: 14:00 Destination: {{ taxi.latLong[0].toFixed(3) }}, {{ taxi.latLong[1].toFixed(3) }}</b>
+                        <b class="eta" v-for="order in orders" v-if="order.taxiId === taxi.taxiId">ETA: 14:00 Destination: {{ order.destAddress }}</b>
                     </div>
                     <div v-else>
                         Taxi #{{ taxi.taxiId }}<br>
@@ -130,7 +130,7 @@
                     </button>
                     <b class="eta">
                         ETA: 14:00
-                        Destination: {{ destAddress }}
+                        Destination: {{ order.destAddress }}
                     </b>
                     <div v-show="viewMore && btnClickedId === order.orderId">
                         <ul>

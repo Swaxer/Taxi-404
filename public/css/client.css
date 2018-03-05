@@ -26,6 +26,10 @@
     height: 60px;
 }
 
+.chooseTaxi:hover {
+    cursor: pointer;
+}
+
 .addressAlternativeList {
     margin-right: 10%;
 }

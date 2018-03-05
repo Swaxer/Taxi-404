@@ -29,7 +29,7 @@
             <div class="col-8-sm">
                 <h2> Taxi-404 </h2>
             </div>
-            <div class="col-2-sm" onclick="toggleNav()">
+            <div class="col-2-sm" id="navBtn" onclick="toggleNav()">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
                 <div class="bar3"></div>
@@ -80,10 +80,10 @@
                         </div>
                         <div class="row taxiSelect" id="car-wrapper">
                             <div class="col-6-sm center">
-                                <div id="removeSmallTaxi" v-on:click="removeSmallTaxi">
+                                <div id="removeSmallTaxi" class="chooseTaxi" v-on:click="removeSmallTaxi">
                                     -
                                 </div>
-                                <div id="addSmallTaxi" v-on:click="addSmallTaxi">
+                                <div id="addSmallTaxi" class="chooseTaxi" v-on:click="addSmallTaxi">
                                     +
                                 </div>
                                 <img src="img/small-taxi.png" class="imgTaxi"/>
@@ -92,10 +92,10 @@
                                 </h2>
                             </div>
                             <div class="col-6-sm center" id="largeTaxi">
-                                <div id="removeLargeTaxi" v-on:click="removeLargeTaxi">
+                                <div id="removeLargeTaxi" class="chooseTaxi" v-on:click="removeLargeTaxi">
                                     -
                                 </div>
-                                <div id="addLargeTaxi" v-on:click="addLargeTaxi">
+                                <div id="addLargeTaxi" class="chooseTaxi" v-on:click="addLargeTaxi">
                                     +
                                 </div>
                                 <img src="img/big-taxi.png" class="imgTaxi"/>
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <div class="row" id="requests">
-                            <div class="col-4-sm center" id="vegetable">
+                            <div class="col-4-sm center" id="disabled">
                                 <p> Rullstol </p>
                                 <input v-model="checkboxes.wheelchair" type="checkbox" class="checkbox"/>
                             </div>

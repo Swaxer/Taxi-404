@@ -56,6 +56,11 @@ input[type="checkbox"] {
     margin-top: 5px;
 }
 
+input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+
+
 textarea {
     width: 100%;
     font-size: 100%;
@@ -89,8 +94,8 @@ footer {
 }
 
 .loader {
-    border: 10px solid #f3f3f3; /* Light grey */
-    border-top: 10px solid #fca311; /* Blue */
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #fca311;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -112,16 +117,16 @@ footer {
   display: none;
 }
 .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 8; /* Stay on top */
-    top: 0; /* Stay at the top */
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 8;
+    top: 0;
     right: 0;
-    background-color: #fca311; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    background-color: #fca311;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
 }
 
 /* The navigation menu links */
@@ -136,7 +141,7 @@ footer {
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-    color: #f1f1f1;
+    cursor: pointer;
 }
 
 /* Position and style the close button (top right corner) */
@@ -146,7 +151,10 @@ footer {
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+}
 
+#navBtn:hover {
+    cursor: pointer;
 }
 
 #my-map {
